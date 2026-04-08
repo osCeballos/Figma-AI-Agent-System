@@ -289,6 +289,71 @@ El agente te guiará paso a paso. Antes de crear nada en Figma, te mostrará una
 
 ---
 
+## 🚀 Instalación asistida con Google Antigravity
+
+Si prefieres automatizar el proceso de configuración y tienes acceso a **Google Antigravity**, puedes solicitar que realice el montaje del proyecto por ti. Antigravity ejecutará los pasos técnicos mientras tú supervisas la seguridad y los permisos.
+
+> [!IMPORTANT]
+> **Revisión de Seguridad:** Antigravity puede automatizar la instalación, pero tú debes confirmar cada comando. Verifica que las rutas, tokens y permisos sean correctos antes de aprobar cualquier acción.
+
+### Qué debes proporcionarle a Antigravity
+
+Para que el agente funcione correctamente, asegúrate de entregarle:
+
+1. **Este archivo README.md** de forma íntegra.
+2. **Ruta absoluta** donde deseas clonar el proyecto (ej. `C:\Users\TuNombre\Desktop` o `/Users/TuNombre/Desktop`).
+3. **Sistema operativo** (Windows o Mac).
+4. **Confirmación explícita** de que permites la ejecución de comandos y la revisión de tokens/cuentas de Figma.
+
+---
+
+### Qué comprobar tras la ejecución
+
+Una vez que Antigravity termine el proceso, verifica los siguientes puntos para asegurar la integridad del entorno:
+
+- **Versiones:** Ejecuta `node --version`, `git --version` y `opencode --version`. Deben devolver versiones válidas.
+- **Configuración:** Comprueba que el archivo `opencode.json` existe y apunta a la carpeta correcta del proyecto.
+- **Servidor:** Ejecuta `npm run socket` y verifica que el servidor de socket arranca sin errores.
+- **Figma:** Asegúrate de que el plugin esté importado en Figma Desktop y logre conectar con el canal mostrado.
+
+---
+
+### Prompt para Google Antigravity
+
+Copia y pega el siguiente bloque de texto en tu chat con Google Antigravity:
+
+````text
+Tarea: Montar y comprobar el proyecto "figma-ai-agent-system" en mi equipo.
+
+Contexto: Tengo el README del proyecto (te lo adjunto). Quiero que ejecutes los pasos necesarios para dejar el proyecto listo para usar con Figma Desktop y Opencode. No ejecutes nada sin mi confirmación cuando se trate de pegar tokens, modificar mi cuenta de Figma o tocar archivos de diseño.
+
+Sistema operativo: Analiza el sistema operativo del usuario, una vez identificado continua con el proceso
+Ruta destino para clonar el proyecto: La ruta del archivo es la carpeta que se le ha proporcionado a google antigravity. Si no se le a asignado se le creara una carpeta en el escritorio del usuario.
+
+Objetivos concretos:
+1. Comprobar e instalar (si falta) Node.js LTS, Git y Opencode.
+2. Clonar el repositorio [https://github.com/osCeballos/figma-ai-agent-system.git](https://github.com/osCeballos/figma-ai-agent-system.git) en la ruta indicada.
+3. Ejecutar `npm install` dentro de la carpeta del proyecto.
+4. Crear el archivo `opencode.json` con la configuración adecuada para mi sistema operativo, sustituyendo `TuNombre` por mi usuario real. Te daré el nombre de usuario si lo necesitas.
+5. Arrancar el servidor de conexión con `npm run socket` y verificar que está escuchando.
+6. Guiarme para importar el plugin en Figma Desktop (indicar exactamente qué archivo seleccionar).
+7. Abrir Opencode y ayudarme a conectar con el canal que muestre el plugin en Figma.
+8. Al terminar, ejecutar comprobaciones: `node --version`, `git --version`, `opencode --version`, y confirmar que `npm run socket` funciona.
+
+Requisitos de seguridad y confirmación:
+- Antes de pegar cualquier token (FIGMA_PAT u otros) o ejecutar comandos que modifiquen mi cuenta de Figma, pídeme confirmación explícita.
+- Muéstrame cada comando que vas a ejecutar y espera mi aprobación.
+- Si algo falla, copia el mensaje de error exacto y pídeme instrucciones.
+
+Salida esperada:
+- Lista de comandos ejecutados y su salida.
+- Archivos creados o modificados (con rutas).
+- Instrucciones finales para abrir Figma y conectar con el agente.
+
+Adjunto: README.md del proyecto.
+
+---
+
 ## Algo ha ido mal — Solución de problemas
 
 | Lo que ves                                         | Qué ha pasado                                      | Qué hacer                                                                                                                                             |
@@ -317,10 +382,12 @@ Para no tener que escribir comandos cada vez que quieras trabajar, puedes crear 
    @echo off
    start cmd /k "npm run socket"
    start cmd /k "opencode"
-   ```
+````
+
 4. Guarda y cierra. Ahora, cada vez que quieras trabajar, solo haz **doble clic** en `iniciar.bat`.
 
 ### En Mac:
+
 1. Abre el programa **TextEdit** y asegúrate de que esté en modo "Texto plano" (`Format > Make Plain Text`).
 2. Pega este código:
    ```bash
