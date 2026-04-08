@@ -4,6 +4,33 @@
 
 ---
 
+## 📋 Índice de contenidos
+
+1. [¿Para qué sirve este sistema?](#para-qué-sirve-este-sistema)
+2. [Cómo funciona (versión simple)](#cómo-funciona-versión-simple)
+3. [Lo que vas a instalar](#lo-que-vas-a-instalar)
+4. [Instalación — Paso a paso](#instalación--paso-a-paso)
+   - [La terminal — tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
+   - [PASO 1 — Instala Node.js](#paso-1--instala-nodejs)
+   - [PASO 2 — Instala Figma Desktop](#paso-2--instala-figma-desktop)
+   - [PASO 3 — Instala Git](#paso-3--instala-git)
+   - [PASO 4 — Instala Opencode](#paso-4--instala-opencode)
+   - [PASO 5 — Descarga este proyecto](#paso-5--descarga-este-proyecto)
+   - [PASO 6 — Instala las dependencias del proyecto](#paso-6--instala-las-dependencias del-proyecto)
+   - [PASO 7 — Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
+   - [PASO 8 — Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
+   - [PASO 9 — Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
+   - [PASO 10 — Comprueba que todo funciona ✅](#paso-10--comprueba-que-todo-funciona-)
+5. [Tu primer diseño](#tu-primer-diseño)
+6. [🚀 Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
+7. [Algo ha ido mal — Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
+8. [🪄 Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
+9. [🛑 Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
+10. [Estructura del proyecto](#estructura-del-proyecto)
+11. [Créditos](#créditos)
+
+---
+
 > **Antes de empezar:** No necesitas saber programar para usar esto. Sigue cada paso en orden, sin saltarte nada, y funcionará. Si algo no va bien, consulta la sección **"Algo ha ido mal"** al final.
 
 ---
