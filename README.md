@@ -1,205 +1,384 @@
 # 🎨 Figma AI Agent System
-> ### Sistema de agentes de IA para diseño automatizado en Figma
 
-![Opencode](https://img.shields.io/badge/Platform-Opencode-blue)
-![Figma](https://img.shields.io/badge/Design-Figma-F24E1E)
-![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+### Tu equipo de diseño automatizado — Guía de instalación para alumnos
 
 ---
 
-## 2. ¿Qué es esto? 🤔
-
-Este sistema es como tener un **equipo de diseñadores expertos** trabajando dentro de tu computadora. En lugar de mover cada píxel a mano, puedes hablar con estos "agentes" para que creen layouts, elijan colores o revisen la accesibilidad de tus diseños por ti. Está diseñado para que te enfoques en la parte creativa mientras la IA se encarga de las tareas repetitivas y técnicas en Figma.
-
-**¿Qué puede hacer por ti este sistema?**
-- ✨ **Crear interfaces completas** a partir de una simple descripción.
-- 📐 **Organizar capas y layouts** automáticamente siguiendo reglas de diseño profesional.
-- 🎨 **Gestionar sistemas de diseño**, tokens de color y tipografías consistentes.
-- 🔍 **Auditar tus diseños** para asegurar que cumplen con estándares de accesibilidad.
-- 🧠 **Recordar tus preferencias** para que cada diseño se sienta "tuyo".
+> **Antes de empezar:** No necesitas saber programar para usar esto. Sigue cada paso en orden, sin saltarte nada, y funcionará. Si algo no va bien, consulta la sección **"Algo ha ido mal"** al final.
 
 ---
 
-## 3. Arquitectura del sistema (visual) 🏗️
+## ¿Para qué sirve este sistema?
 
-Así es como se organizan los agentes para trabajar en tus proyectos:
+Imagina que puedes describir un diseño con palabras —igual que le explicarías algo a un compañero— y que un equipo de agentes de inteligencia artificial lo construye en Figma por ti, respetando grids, tipografía, accesibilidad y sistemas de componentes.
 
-| Agente | Función Principal | Relación |
-| :--- | :--- | :--- |
-| **Figma Director** | El "jefe" del equipo. Recibe tus órdenes y decide qué sub-agente debe actuar. | Coordina a todos los demás. |
-| **Design Subagent** | El experto visual. Define estilos, colores y la estética general. | Propone el estilo visual. |
-| **Layout Subagent** | El arquitecto. Se encarga de la estructura y el Auto Layout. | Construye la estructura. |
-| **Tokens & Components**| Los bibliotecarios. Gestionan los elementos reutilizables de Figma. | Mantienen el orden. |
-| **Auditor Subagent** | El control de calidad. Revisa que todo esté perfecto y accesible. | Da el visto bueno final. |
-| **Memory Subagent** | El historiador. Recuerda tus decisiones previas y gustos. | Da contexto al equipo. |
+Eso es exactamente lo que hace este sistema.
 
----
+**¿Qué puede crear?**
 
-## 4. Requisitos previos 📋
+- Tarjetas, formularios, pantallas y layouts completos
+- Paletas de color con teoría cromática aplicada
+- Sistemas de tokens (variables de color, espaciado, tipografía)
+- Componentes reutilizables con variantes
 
-Antes de empezar, asegúrate de tener instalados estos programas:
-
-1. **Node.js (v18 o superior):** Es el motor que permite ejecutar el código del sistema.  
-   👉 [Descargar Node.js](https://nodejs.org/)
-2. **Figma Desktop:** La versión de escritorio de Figma (necesaria para conectar con la IA).  
-   👉 [Descargar Figma](https://www.figma.com/downloads/)
-3. **Opencode:** La plataforma base donde viven nuestros agentes de IA.  
-   👉 [Sitio de Opencode](#) *(Enlace a tu plataforma interna)*
-4. **Git:** La herramienta para descargar y actualizar este proyecto de forma sencilla.  
-   👉 [Descargar Git](https://git-scm.com/)
+**El sistema siempre te pedirá confirmación antes de tocar tu archivo de Figma. Nunca modificará nada sin que tú lo apruebes.**
 
 ---
 
-## 5. Instalación paso a paso 🚀
+## Cómo funciona (versión simple)
 
-Sigue estos pasos con calma. No necesitas ser programador para lograrlo.
+El sistema tiene **7 agentes** que trabajan en cadena:
 
-### 🌐 Paso 1: Clonar el repositorio
-Abre la terminal de tu sistema y escribe:
+```
+Tú escribes una petición
+    ↓
+Memory — recuerda tus preferencias
+    ↓
+Design — propone estilo, colores y tipografía  ← TÚ APRUEBAS AQUÍ
+    ↓
+Tokens → Layout → Components → Auditor
+    ↓
+El diseño aparece en tu Figma ✓
+```
 
-**En Windows (PowerShell):**
-```powershell
-git clone https://github.com/tu-usuario/figma-ai-agent-system.git
+No necesitas entender cómo funciona por dentro. Solo necesitas instalar 4 programas y seguir los pasos de esta guía.
+
+---
+
+## Lo que vas a instalar
+
+| Programa          | Para qué sirve                                                        |
+| :---------------- | :-------------------------------------------------------------------- |
+| **Node.js**       | El motor que hace funcionar el sistema en tu ordenador                |
+| **Figma Desktop** | La versión de escritorio de Figma (la versión web no sirve para esto) |
+| **Opencode**      | La plataforma donde viven y se ejecutan los agentes de IA             |
+| **Git**           | La herramienta para descargar este proyecto a tu ordenador            |
+
+---
+
+## Instalación — Paso a paso
+
+### La terminal — tu herramienta profesional
+
+Durante esta instalación usarás la terminal: una ventana de texto donde escribes comandos directamente al ordenador. Es la misma herramienta que usan los equipos de diseño en empresas como Google, Anthropic o cualquier estudio digital serio. No necesitas entenderla entera — solo los comandos de esta guía — pero desde hoy ya la estás usando como un profesional.
+
+**Cómo abrirla:**
+
+- **Windows:** Pulsa la tecla Windows → escribe `PowerShell` → pulsa Enter
+- **Mac:** Pulsa `Cmd + Espacio` → escribe `Terminal` → pulsa Enter
+
+Cuando la abras verás una ventana con texto. Escribe los comandos exactamente como aparecen en esta guía y pulsa Enter después de cada uno. Eso es todo lo que necesitas saber por ahora.
+
+---
+
+### PASO 1 — Instala Node.js
+
+1. Ve a 👉 [nodejs.org](https://nodejs.org/)
+2. Descarga el botón grande que pone **"LTS — Recommended for most users"**
+3. Abre el archivo descargado e instálalo con todas las opciones por defecto (siguiente, siguiente, instalar)
+4. Cuando termine, **cierra y vuelve a abrir la terminal**
+5. Escribe esto y pulsa Enter para comprobar que se instaló:
+   ```
+   node --version
+   ```
+   Si ves algo como `v20.x.x`, está perfecto. Si ves un error, vuelve a instalar Node.js.
+
+---
+
+### PASO 2 — Instala Figma Desktop
+
+> Si ya tienes Figma Desktop instalado, puedes saltar al Paso 3.
+
+1. Ve a 👉 [figma.com/downloads](https://www.figma.com/downloads/)
+2. Descarga e instala la versión para tu sistema operativo
+3. Ábrela e inicia sesión con tu cuenta de Figma
+
+---
+
+### PASO 3 — Instala Git
+
+Git es la herramienta que te permite descargar proyectos desde internet con la terminal.
+
+- **Windows:** Ve a 👉 [git-scm.com/download/win](https://git-scm.com/download/win) e instálalo con todas las opciones por defecto
+- **Mac:** Abre la terminal, escribe `git --version` y pulsa Enter. Si no está instalado, el sistema te ofrecerá instalarlo automáticamente — acepta.
+
+---
+
+### PASO 4 — Instala Opencode
+
+Opencode es la plataforma donde viven los agentes. Se usa desde la terminal, igual que lo hacen los equipos de IA en entornos profesionales.
+
+Abre la terminal y ejecuta **uno de estos comandos** según lo que tengas instalado (si no sabes cuál, usa el primero):
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+Si el anterior no funciona, prueba con:
+
+```bash
+npm i -g opencode-ai
+```
+
+O en Mac con Homebrew:
+
+```bash
+brew install anomalyco/tap/opencode
+```
+
+Cuando termine, escribe esto en la terminal para confirmar que se instaló correctamente:
+
+```bash
+opencode --version
+```
+
+---
+
+### PASO 5 — Descarga este proyecto
+
+Abre la terminal y escribe estos dos comandos, **uno después del otro**, pulsando Enter tras cada uno:
+
+```bash
+git clone https://github.com/osCeballos/figma-ai-agent-system.git
 cd figma-ai-agent-system
 ```
 
-**En Mac (Terminal):**
-```bash
-git clone https://github.com/tu-usuario/figma-ai-agent-system.git
-cd figma-ai-agent-system
-```
-[CAPTURA: Una ventana de terminal con el comando git clone escrito]
+Verás texto moviéndose mientras se descarga. Cuando vuelva a aparecer el cursor parpadeante, ha terminado.
 
 ---
 
-### 📦 Paso 2: Instalar dependencias
-Instala los paquetes necesarios dentro de la carpeta del proyecto:
+### PASO 6 — Instala las dependencias del proyecto
 
-**En Windows (PowerShell):**
-```powershell
-npm install
-```
+Con la terminal **aún dentro de la carpeta del proyecto** (la misma ventana del paso anterior), escribe:
 
-**En Mac (Terminal):**
 ```bash
 npm install
 ```
-[CAPTURA: La terminal mostrando una lista de paquetes instalándose]
+
+Verás cómo se instalan paquetes automáticamente. Puede tardar entre 1 y 3 minutos. Cuando termine y vuelva el cursor, continúa.
 
 ---
 
-### 🔌 Paso 3: Configurar el MCP de Figma
-Necesitamos que la IA pueda "hablar" con Figma. Usaremos el conector `claude-talk-to-figma-mcp`.
+### PASO 7 — Crea el archivo de configuración
 
-1. Abre la configuración de tu plataforma Opencode.
-2. Añade un nuevo MCP con la siguiente configuración:
-   - **Nombre:** Figma
-   - **Comando:** `npx -y claude-talk-to-figma-mcp`
-   - **Variables:** Necesitarás tu `FIGMA_PAT` (Personal Access Token).
-[CAPTURA: Pantalla de configuración de Opencode con el cuadro de MCP resaltado]
+Ahora tienes que crear un archivo que le dice al sistema cómo conectarse a Figma.
+
+1. Abre la carpeta `figma-ai-agent-system` con cualquier editor de texto (Bloc de notas, VS Code, TextEdit...)
+2. Crea un archivo nuevo llamado exactamente **`opencode.json`** (con ese nombre, sin espacios)
+3. Copia y pega el contenido correspondiente a tu sistema operativo:
+
+**Si tienes Windows:**
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "local",
+      "command": ["npx", "-y", "claude-talk-to-figma-mcp"],
+      "enabled": true
+    },
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\TuNombre\\Desktop\\figma-ai-agent-system"
+      ],
+      "enabled": true
+    }
+  }
+}
+```
+
+**Si tienes Mac:**
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "local",
+      "command": ["npx", "-y", "claude-talk-to-figma-mcp"],
+      "enabled": true
+    },
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/TuNombre/Desktop/figma-ai-agent-system"
+      ],
+      "enabled": true
+    }
+  }
+}
+```
+
+4. **Importante:** sustituye `TuNombre` por tu nombre de usuario real del ordenador. Si no sabes cuál es:
+   - **Windows:** abre el Explorador de archivos → ve a `C:\Users\` y mira el nombre de tu carpeta
+   - **Mac:** abre el Finder → ve a la carpeta de inicio (el icono de casa)
+5. Guarda el archivo
 
 ---
 
-### 📁 Paso 4: Configurar el MCP de Filesystem
-Esto permite que los agentes guarden "recuerdos" en tu carpeta local.
+### PASO 8 — Arranca el servidor de conexión
 
-1. Añade otro MCP en Opencode:
-   - **Nombre:** Filesystem
-   - **Comando:** `npx -y @modelcontextprotocol/server-filesystem [RUTA_A_TU_CARPETA]`
-[CAPTURA: Selección de una carpeta local desde la interfaz de configuración]
+Este servidor es el "puente" entre los agentes y Figma. **Tienes que arrancarlo cada vez que quieras usar el sistema.**
 
----
+En la terminal (dentro de la carpeta del proyecto), escribe:
 
-### 🎨 Paso 5: Instalar el plugin en Figma Desktop
-1. Abre Figma Desktop.
-2. Ve a **Plugins > Development > New Plugin**.
-3. Haz clic en "Link existing block" y selecciona el archivo `manifest.json` de este repositorio.
-[CAPTURA: Menú de plugins de Figma señalando la opción Development]
+```bash
+npm run socket
+```
+
+Verás un mensaje confirmando que está escuchando. **No cierres esta ventana de terminal** mientras trabajas. Si la cierras por accidente, vuelve a ejecutar el mismo comando.
 
 ---
 
-### ✅ Paso 6: Verificar
-Escribe en el chat de tu agente: `"Hola, ¿puedes ver mi archivo de Figma actual?"`. Si responde positivamente, ¡estás listo!
+### PASO 9 — Instala el plugin en Figma Desktop
+
+1. Abre **Figma Desktop** (la app, no el navegador)
+2. Haz clic en el icono del logo de Figma (arriba a la izquierda)
+3. Ve a **Plugins → Development → Import plugin from manifest...**
+4. Se abrirá el explorador de archivos. Navega hasta la carpeta del proyecto y selecciona este archivo:
+   ```
+   src/claude_mcp_plugin/manifest.json
+   ```
+5. El plugin aparecerá en tu lista bajo **Plugins → Development → Figma AI Agent**
+
+> ⚠️ Asegúrate de seleccionar el archivo dentro de `src/claude_mcp_plugin/` y no ningún otro.
 
 ---
 
-### 🪄 Alternativa: Instalación Automática (El "Botón Mágico")
+### PASO 10 — Comprueba que todo funciona ✅
 
-Si los pasos anteriores con la terminal te parecen muy técnicos o te dan algún error, ¡no te preocupes! Puedes pedirle a **Google Antigravity** que haga el trabajo pesado por ti y te prepare un archivo ejecutable (para que solo tengas que hacer doble clic).
+1. Confirma que el servidor del Paso 9 sigue corriendo en la terminal
+2. Abre cualquier archivo en Figma Desktop
+3. Ve a **Plugins → Development → Figma AI Agent** para abrir el plugin
+4. El plugin mostrará un **código de canal** (un número, en verde)
+5. Abre **Opencode desde la terminal**, dentro de la carpeta del proyecto, escribiendo:
 
-Abre **Google Antigravity** y usa exactamente este prompt:
+   ```bash
+   opencode
+   ```
 
-> "Analiza los requisitos de este proyecto de Figma AI Agent System. Por favor, crea un archivo ejecutable (.bat si uso Windows o .command si uso Mac) que yo pueda guardar en mi escritorio. Este script debe encargarse de todo automáticamente: descargar el código, instalar las dependencias de Node.js, ejecutar la configuración de los conectores MCP y arrancar el servidor. Escribe el script a prueba de fallos, añadiendo mensajes claros (echo) para saber qué está haciendo en cada paso."
+   Y escribe en el chat:
 
-**¿Qué pasará después?**
-Antigravity te dará el código para un archivo. Solo tendrás que guardarlo en tu escritorio, hacerle doble clic, y él solo abrirá una ventana, instalará todo lo necesario y conectará tu Figma sin que tengas que escribir ni un solo comando más. ¡Cero estrés!
+   ```
+   Conecta con Figma, canal [el número que ves en el plugin]
+   ```
+
+6. Si el agente responde confirmando la conexión... **¡todo está listo!** 🎉
 
 ---
 
-## 6. Cómo usar el sistema por primera vez 🛠️
+## Tu primer diseño
 
-1. **Abre Figma** y entra en el archivo donde quieras trabajar.
-2. **Inicia el plugin** que instalaste (Plugins > Development > Figma AI Agent).
-3. **Abre Opencode** y selecciona el agente de diseño.
-4. **Dale una orden**, por ejemplo: *"Crea una sección de Hero para una app de café con tonos marrones"*.
-5. **Observa la magia:** Verás cómo los elementos aparecen y se organizan solos en tu lienzo de Figma.
+Una vez conectado, puedes pedirle al agente que diseñe algo. Aquí tienes algunos ejemplos para empezar:
+
+> _"Crea una tarjeta de producto para una tienda de ropa. Necesita imagen, nombre del producto, precio y botón de compra."_
+
+> _"Diseña una pantalla de inicio de sesión con campo de email, contraseña y botón. Estilo moderno y minimalista."_
+
+> _"Haz un componente de navegación con logo a la izquierda y 4 enlaces a la derecha."_
+
+El agente te guiará paso a paso. Antes de crear nada en Figma, te mostrará una propuesta de estilo y esperará a que la apruebes. Puedes pedirle cambios o darle el visto bueno.
 
 ---
 
-## 7. Estructura del repositorio 📂
+## Algo ha ido mal — Solución de problemas
 
-```text
-├── agents/             # Cerebros y lógica de la IA
-│   ├── figma-director.md    # El coordinador: recibe órdenes y delega tareas
-│   ├── design-subagent.md   # El estratega visual: define estilos y estética
-│   ├── layout-subagent.md   # El arquitecto: construye estructuras y Auto Layout
-│   ├── components-subagent.md # El bibliotecario: gestiona botones y elementos
-│   ├── tokens-subagent.md   # El colorista: controla variables y tokens de diseño
-│   ├── auditor-subagent.md  # El revisor: asegura accesibilidad y calidad
-│   ├── memory-subagent.md   # El historiador: guarda tus preferencias y gustos
-│   └── GLOSSARY.md          # Diccionario de términos técnicos del sistema
-├── skills/             # Biblioteca de conocimientos y patrones
-│   ├── design-patterns/     # Guías de cómo hacer cada sección (Hero, Navbar...)
-│   ├── css-to-figma-api/    # Utilidades para convertir código a diseño
-│   └── svg-library/         # Carpetas con iconos y recursos gráficos
-├── manifest.json       # El "DNI" del plugin para que Figma lo reconozca
-└── README.md           # Esta guía de supervivencia
+| Lo que ves                                         | Qué ha pasado                                      | Qué hacer                                                                                                                                             |
+| :------------------------------------------------- | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| El plugin no aparece en Figma                      | Se seleccionó el archivo equivocado                | Repite el Paso 10. El archivo correcto está en `src/claude_mcp_plugin/manifest.json`                                                                  |
+| "Canal no encontrado"                              | El servidor no está corriendo                      | Abre la terminal, ve a la carpeta del proyecto y ejecuta `npm run socket`                                                                             |
+| El plugin no muestra ningún número                 | El plugin no está abierto                          | Ve a Plugins → Development → Figma AI Agent y ábrelo                                                                                                  |
+| El agente no recuerda tus preferencias             | La ruta en `opencode.json` es incorrecta           | Revisa el Paso 7 y comprueba que la ruta lleva exactamente a tu carpeta del proyecto y que el subagente de memoria apunta a `.opencode/agents/memory` |
+| Error al ejecutar `git clone`                      | Git no está instalado                              | Instala Git (Paso 3) y reinicia la terminal antes de intentarlo de nuevo                                                                              |
+| Error al ejecutar `npm install`                    | Node.js no está instalado o es muy antiguo         | Instala la versión LTS de Node.js (Paso 1) y reinicia la terminal                                                                                     |
+| "No FIGMA_PAT found"                               | Falta el token de Figma                            | Repite el Paso 8 y asegúrate de que el token está bien pegado en el `opencode.json`                                                                   |
+| El agente no responde                              | Opencode no se lanzó desde la carpeta del proyecto | Cierra Opencode, navega con `cd` hasta la carpeta `figma-ai-agent-system` y ejecuta `opencode` de nuevo                                               |
+| La terminal se cierra sola o muestra un error rojo | Algo salió mal en algún comando                    | Copia el mensaje de error exacto y pregúntaselo a tu profesor                                                                                         |
+
+---
+
+## 🪄 Atajo: El botón de inicio (Recomendado)
+
+Para no tener que escribir comandos cada vez que quieras trabajar, puedes crear un "botón de inicio" que lo haga todo por ti:
+
+### En Windows:
+1. Dentro de la carpeta del proyecto, haz clic derecho → **Nuevo → Documento de texto**.
+2. Ponle el nombre `iniciar.bat` (asegúrate de que termine en `.bat` y no en `.txt`).
+3. Haz clic derecho sobre él → **Editar** y pega este código:
+   ```batch
+   @echo off
+   start cmd /k "npm run socket"
+   start cmd /k "opencode"
+   ```
+4. Guarda y cierra. Ahora, cada vez que quieras trabajar, solo haz **doble clic** en `iniciar.bat`.
+
+### En Mac:
+1. Abre el programa **TextEdit** y asegúrate de que esté en modo "Texto plano" (`Format > Make Plain Text`).
+2. Pega este código:
+   ```bash
+   #!/bin/bash
+   cd "$(dirname "$0")"
+   osascript -e 'tell application "Terminal" to do script "cd \"'$(pwd)'\"; npm run socket"'
+   opencode
+   ```
+3. Guárdalo en la carpeta del proyecto como `iniciar.command`.
+4. Abre la Terminal y escribe `chmod +x ` (con un espacio al final), arrastra el archivo `iniciar.command` a la terminal y pulsa Enter.
+5. Ahora puedes hacer **doble clic** en `iniciar.command` para arrancar todo.
+
+---
+
+## 🛑 Cómo cerrar el sistema
+
+Cuando hayas terminado tu sesión de trabajo, sigue estos pasos para cerrar todo correctamente:
+
+1. **En las ventanas de la Terminal:** Haz clic en cada una y pulsa `Ctrl + C`. Esto detendrá los procesos de forma segura.
+2. **Cierra las ventanas:** Una vez detenidos los procesos, puedes cerrar las ventanas de la terminal.
+3. **Figma:** Puedes cerrar el [plugin](file:///c:/Users/oscar/Desktop/agente/src/claude_mcp_plugin/manifest.json) de Figma simplemente cerrando su ventana dentro de la aplicación.
+
+---
+
+## Estructura del proyecto
+
+```
+figma-ai-agent-system/
+│
+├── .opencode/                    ← Carpeta de configuración automática de Opencode
+│   ├── agents/                   ← Los 7 agentes de IA
+│   │   ├── figma-director.md
+│   │   ├── design-subagent.md
+│   │   ├── layout-subagent.md
+│   │   ├── components-subagent.md
+│   │   ├── tokens-subagent.md
+│   │   ├── auditor-subagent.md
+│   │   ├── memory-subagent.md
+│   │   └── memory/               ← Aquí se guardan tus preferencias
+│   │
+│   └── skills/                   ← Conocimiento especializado de los agentes
+│       ├── design-patterns/
+│       ├── css-to-figma-api/
+│       ├── figma-grid-calculus/
+│       └── svg-library/
+│
+├── manifest.json                 ← El "DNI" del plugin para que Figma lo reconozca
+└── opencode.json                 ← Configuración de conectores y servidor
 ```
 
 ---
 
-## 8. Solución de problemas frecuentes 🔍
+## Créditos
 
-| Problema | Causa probable | Solución |
-| :--- | :--- | :--- |
-| **El plugin no aparece en Figma** | No se ha vinculado el `manifest.json`. | Repite el Paso 5 de la instalación. |
-| **Agente dice "canal no encontrado"** | El plugin de Figma no está abierto. | Abre el plugin desde el menú "Development" en Figma. |
-| **Filesystem MCP no conecta** | La ruta de la carpeta es incorrecta. | Revisa que la ruta en el Paso 4 sea absoluta (ej: `C:\Users\...`). |
-| **No encuentra archivos de memoria** | El agente de Memoria no tiene permisos. | Verifica que el MCP de Filesystem tenga acceso a la subcarpeta `agents/memory`. |
-| **Error "No FIGMA_PAT"** | Falta el token de acceso personal. | Genera uno en la configuración de tu cuenta de Figma y añádelo a Opencode. |
-| **Los comandos fallan en Terminal** | Node.js no está bien instalado. | Reinicia tu computadora tras instalar Node.js. |
+- **Plugin de conexión con Figma:** [claude-talk-to-figma-mcp](https://github.com/arinspunk/claude-talk-to-figma-mcp) por arinspunk
+- **Licencia:** MIT — puedes usar, modificar y distribuir este proyecto libremente
 
 ---
 
-## 9. Contribuir 🤝
-
-¿Quieres mejorar este sistema con tus compañeros? ¡Es fácil!
-
-1. **Haz un Fork** del repositorio de tu compañero.
-2. **Crea una Rama** con tu nueva función (ej: `git checkout -b mejora-iconos`).
-3. **Sube tus cambios** (Push) a GitHub.
-4. **Crea un Pull Request** explicando qué has mejorado para que el dueño lo revise.
-
----
-
-## 10. Créditos y licencia 📜
-
-- **Base Tecnológica:** [claude-talk-to-figma-mcp](https://github.com/arinspunk/claude-talk-to-figma-mcp) por arinspunk.
-- **Plataforma:** Opencode AI.
-- **Licencia:** Distribuido bajo la Licencia **MIT**.
-
----
-**Autor:** [Añade tu nombre aquí]  
-**Institución:** [Añade el nombre de tu escuela/universidad]  
-**Año:** 2024
+**Autor:** Oscar Ceballos Cano  
+**Año:** 2026

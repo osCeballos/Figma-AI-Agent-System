@@ -1,0 +1,20 @@
+{
+  "name": "Figma AI Agent System",
+  "mcpServers": {
+    "figma": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "claude-talk-to-figma-mcp"],
+      "enabled": true,
+      "environment": {
+        "FIGMA_PAT": "pega-aquí-tu-token"
+      }
+    },
+    "filesystem": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "enabled": true
+    }
+  }
+}
