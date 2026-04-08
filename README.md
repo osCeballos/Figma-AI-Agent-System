@@ -322,7 +322,7 @@ Una vez que Antigravity termine el proceso, verifica los siguientes puntos para 
 
 Copia y pega el siguiente bloque de texto en tu chat con Google Antigravity:
 
-````text
+```text
 Tarea: Montar y comprobar el proyecto "figma-ai-agent-system" en mi equipo.
 
 Contexto: Tengo el README del proyecto (te lo adjunto). Quiero que ejecutes los pasos necesarios para dejar el proyecto listo para usar con Figma Desktop y Opencode. No ejecutes nada sin mi confirmación cuando se trate de pegar tokens, modificar mi cuenta de Figma o tocar archivos de diseño.
@@ -351,6 +351,7 @@ Salida esperada:
 - Instrucciones finales para abrir Figma y conectar con el agente.
 
 Adjunto: README.md del proyecto.
+```
 
 ---
 
@@ -382,7 +383,7 @@ Para no tener que escribir comandos cada vez que quieras trabajar, puedes crear 
    @echo off
    start cmd /k "npm run socket"
    start cmd /k "opencode"
-````
+   ```
 
 4. Guarda y cierra. Ahora, cada vez que quieras trabajar, solo haz **doble clic** en `iniciar.bat`.
 
