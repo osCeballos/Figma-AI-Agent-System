@@ -1,4 +1,4 @@
-# Tu equipo de diseño automatizado — Guía de instalación para alumnos
+# Guía de instalación para alumnos
 
 ## 📋 Índice de contenidos
 
@@ -16,12 +16,12 @@
    - [PASO 7 — Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
    - [PASO 8 — Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
    - [PASO 9 — Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
-   - [PASO 10 — Comprueba que todo funciona ✅](#paso-10--comprueba-que-todo-funciona-)
+   - [PASO 10 — Comprueba que todo funciona](#paso-10--comprueba-que-todo-funciona-)
 5. [Tu primer diseño](#tu-primer-diseño)
-6. [🚀 Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
+6. [Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
 7. [Algo ha ido mal — Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
 8. [🪄 Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
-9. [🛑 Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
+9. [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
 10. [Estructura del proyecto](#estructura-del-proyecto)
 11. [Créditos](#créditos)
 
