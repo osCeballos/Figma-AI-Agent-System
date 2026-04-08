@@ -5,8 +5,8 @@
 1. [¿Para qué sirve este sistema?](#para-qué-sirve-este-sistema)
 2. [Cómo funciona (versión simple)](#cómo-funciona-versión-simple)
 3. [Lo que vas a instalar](#lo-que-vas-a-instalar)
-4. [Instalación — Paso a paso](#instalación--paso-a-paso)
-   - [La terminal — tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
+4. [Instalación - Paso a paso](#instalación--paso-a-paso)
+   - [La terminal - tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
    - [PASO 1 - Instala Node.js](#paso-1--instala-nodejs)
    - [PASO 2 - Instala Figma Desktop](#paso-2--instala-figma-desktop)
    - [PASO 3 - Instala Git](#paso-3--instala-git)
@@ -33,7 +33,7 @@
 
 ## ¿Para qué sirve este sistema?
 
-Imagina que puedes describir un diseño con palabras —igual que le explicarías algo a un compañero— y que un equipo de agentes de inteligencia artificial lo construye en Figma por ti, respetando grids, tipografía, accesibilidad y sistemas de componentes.
+Imagina que puedes describir un diseño con palabras, igual que le explicarías algo a un compañero y que un equipo de agentes de inteligencia artificial lo construye en Figma por ti, respetando grids, tipografía, accesibilidad y sistemas de componentes.
 
 Eso es exactamente lo que hace este sistema.
 
@@ -79,11 +79,11 @@ No necesitas entender cómo funciona por dentro. Solo necesitas instalar 4 progr
 
 ---
 
-## Instalación — Paso a paso
+## Instalación - Paso a paso
 
-### La terminal — tu herramienta profesional
+### La terminal - tu herramienta profesional
 
-Durante esta instalación usarás la terminal: una ventana de texto donde escribes comandos directamente al ordenador. Es la misma herramienta que usan los equipos de diseño en empresas como Google, Anthropic o cualquier estudio digital serio. No necesitas entenderla entera — solo los comandos de esta guía — pero desde hoy ya la estás usando como un profesional.
+Durante esta instalación usarás la terminal: una ventana de texto donde escribes comandos directamente al ordenador. Es la misma herramienta que usan los equipos de diseño en empresas como Google, Anthropic o cualquier estudio digital serio. No necesitas entenderla entera, solo los comandos de esta guía, pero desde hoy ya la estás usando como un profesional.
 
 **Cómo abrirla:**
 
@@ -97,7 +97,7 @@ Cuando la abras verás una ventana con texto. Escribe los comandos exactamente c
 ### PASO 1 - Instala Node.js
 
 1. Ve a 👉 [nodejs.org](https://nodejs.org/)
-2. Descarga el botón grande que pone **"LTS — Recommended for most users"**
+2. Descarga el botón grande que pone **"LTS - Recommended for most users"**
 3. Abre el archivo descargado e instálalo con todas las opciones por defecto (siguiente, siguiente, instalar)
 4. Cuando termine, **cierra y vuelve a abrir la terminal**
 5. Escribe esto y pulsa Enter para comprobar que se instaló:
@@ -123,7 +123,7 @@ Cuando la abras verás una ventana con texto. Escribe los comandos exactamente c
 Git es la herramienta que te permite descargar proyectos desde internet con la terminal.
 
 - **Windows:** Ve a 👉 [git-scm.com/download/win](https://git-scm.com/download/win) e instálalo con todas las opciones por defecto
-- **Mac:** Abre la terminal, escribe `git --version` y pulsa Enter. Si no está instalado, el sistema te ofrecerá instalarlo automáticamente — acepta.
+- **Mac:** Abre la terminal, escribe `git --version` y pulsa Enter. Si no está instalado, el sistema te ofrecerá instalarlo automáticamente - acepta.
 
 ---
 
@@ -378,7 +378,7 @@ Adjunto: README.md del proyecto.
 
 ---
 
-## Algo ha ido mal — Solución de problemas
+## Algo ha ido mal - Solución de problemas
 
 | Lo que ves                                         | Qué ha pasado                                      | Qué hacer                                                                                                                                             |
 | :------------------------------------------------- | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -469,7 +469,7 @@ figma-ai-agent-system/
 ## Créditos
 
 - **Plugin de conexión con Figma:** [claude-talk-to-figma-mcp](https://github.com/arinspunk/claude-talk-to-figma-mcp) por arinspunk
-- **Licencia:** MIT — puedes usar, modificar y distribuir este proyecto libremente
+- **Licencia:** MIT - puedes usar, modificar y distribuir este proyecto libremente
 
 ---
 
