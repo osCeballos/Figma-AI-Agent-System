@@ -3,7 +3,7 @@
 ## 📋 Índice de contenidos
 
 1. [¿Para qué sirve este sistema?](#para-qué-sirve-este-sistema)
-2. [Cómo funciona (versión simple)](#cómo-funciona-versión-simple)
+2. [Cómo funciona: Tu equipo de diseño virtual](#cómo-funciona-tu-equipo-de-diseño-virtual)
 3. [Lo que vas a instalar](#lo-que-vas-a-instalar)
 4. [Instalación - Paso a paso](#instalación--paso-a-paso)
    - [La terminal - tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
@@ -48,23 +48,43 @@ Eso es exactamente lo que hace este sistema.
 
 ---
 
-## Cómo funciona (versión simple)
+## Cómo funciona:
 
-El sistema tiene **7 agentes** que trabajan en cadena:
+Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agentes especializados** que colaboran entre sí, coordinados por un Director, para asegurar que el resultado sea profesional, accesible y coherente con tu estilo.
 
+### El flujo de trabajo
+
+Así es como tus ideas se convierten en nodos de Figma reales:
+
+```mermaid
+graph TD
+    User([<b>Tú</b><br/>Escribes una petición]) --> Director[<b>Director</b><br/>Coordina el equipo]
+    Director --> Memory[<b>Memory</b><br/>Recupera tus preferencias]
+    Memory --> Design[<b>Design</b><br/>Propuesta visual]
+    Design -- "<b>Espera tu aprobación</b>" --> Approval{¿Te gusta?}
+    Approval -- No --> Design
+    Approval -- Sí --> Execution[<b>Construcción Técnica</b><br/>Tokens + Layout + Components]
+    Execution --> Auditor[<b>Auditor</b><br/>Control de calidad y accesible]
+    Auditor --> Figma([<b>Figma</b><br/>Diseño finalizado])
+
+    style User fill:#f9f,stroke:#333,stroke-width:2px
+    style Figma fill:#0f0,stroke:#333,stroke-width:2px
+    style Design fill:#ff9,stroke:#333,stroke-width:4px
 ```
-Tú escribes una petición
-    ↓
-Memory — recuerda tus preferencias
-    ↓
-Design — propone estilo, colores y tipografía  ← TÚ APRUEBAS AQUÍ
-    ↓
-Tokens → Layout → Components → Auditor
-    ↓
-El diseño aparece en tu Figma ✓
-```
 
-No necesitas entender cómo funciona por dentro. Solo necesitas instalar 4 programas y seguir los pasos de esta guía.
+### ¿Quién es quién en tu equipo?
+
+Para que el sistema funcione, cada agente tiene una especialidad concreta:
+
+- **🧠 figma-director:** Es el jefe de proyectos. Escucha tu petición, decide qué pasos dar y reparte el trabajo entre los demás expertos.
+- **💾 memory-subagent:** Es el historiador. Recuerda si te gusta el estilo minimalista, si prefieres ciertos colores o qué decisiones tomaste en el pasado.
+- **🎨 design-subagent:** Es el director creativo. Decide la paleta de colores, la tipografía y el "look & feel" basándose en teoría del diseño real.
+- **📐 layout-subagent:** Es el arquitecto. Se encarga de la estructura, las rejillas (grids) y de que todo use **AutoLayout** perfectamente.
+- **📦 components-subagent:** Es el constructor. Crea los botones, tarjetas y elementos reutilizables con sus variantes.
+- **🔍 auditor-subagent:** Es el control de calidad. Revisa que los contrastes sean accesibles (WCAG) y que los nombres de las capas estén impecables.
+
+> [!TIP]
+> **Tú tienes la última palabra:** El sistema nunca empezará a construir en la "fase técnica" hasta que tú no le des el visto bueno a la propuesta visual del agente de Diseño.
 
 ---
 
