@@ -1,8 +1,4 @@
-# 🎨 Figma AI Agent System
-
-### Tu equipo de diseño automatizado — Guía de instalación para alumnos
-
----
+# Tu equipo de diseño automatizado — Guía de instalación para alumnos
 
 ## 📋 Índice de contenidos
 
@@ -16,7 +12,7 @@
    - [PASO 3 — Instala Git](#paso-3--instala-git)
    - [PASO 4 — Instala Opencode](#paso-4--instala-opencode)
    - [PASO 5 — Descarga este proyecto](#paso-5--descarga-este-proyecto)
-   - [PASO 6 — Instala las dependencias del proyecto](#paso-6--instala-las-dependencias del-proyecto)
+   - [PASO 6 — Instala las dependencias del proyecto](#paso-6--instala-las-dependencias-del-proyecto)
    - [PASO 7 — Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
    - [PASO 8 — Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
    - [PASO 9 — Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
@@ -403,9 +399,11 @@ Adjunto: README.md del proyecto.
 Para no tener que escribir comandos cada vez que quieras trabajar, puedes crear un "botón de inicio" que lo haga todo por ti:
 
 ### En Windows:
+
 1. Dentro de la carpeta del proyecto, haz clic derecho → **Nuevo → Documento de texto**.
 2. Ponle el nombre `iniciar.bat` (asegúrate de que termine en `.bat` y no en `.txt`).
 3. Haz clic derecho sobre él → **Editar** y pega este código:
+
    ```batch
    @echo off
    start cmd /k "npm run socket"
