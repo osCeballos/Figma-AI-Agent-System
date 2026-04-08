@@ -20,7 +20,7 @@
 5. [Tu primer diseño](#tu-primer-diseño)
 6. [Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
 7. [Algo ha ido mal — Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
-8. [🪄 Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
+8. [Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
 9. [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
 10. [Estructura del proyecto](#estructura-del-proyecto)
 11. [Créditos](#créditos)
@@ -312,7 +312,7 @@ El agente te guiará paso a paso. Antes de crear nada en Figma, te mostrará una
 
 ---
 
-## 🚀 Instalación asistida con Google Antigravity
+## Instalación asistida con Google Antigravity
 
 Si prefieres automatizar el proceso de configuración y tienes acceso a **Google Antigravity**, puedes solicitar que realice el montaje del proyecto por ti. Antigravity ejecutará los pasos técnicos mientras tú supervisas la seguridad y los permisos.
 
@@ -394,7 +394,7 @@ Adjunto: README.md del proyecto.
 
 ---
 
-## 🪄 Atajo: El botón de inicio (Recomendado)
+## Atajo: El botón de inicio (Recomendado)
 
 Para no tener que escribir comandos cada vez que quieras trabajar, puedes crear un "botón de inicio" que lo haga todo por ti:
 
@@ -428,7 +428,7 @@ Para no tener que escribir comandos cada vez que quieras trabajar, puedes crear 
 
 ---
 
-## 🛑 Cómo cerrar el sistema
+## Cómo cerrar el sistema
 
 Cuando hayas terminado tu sesión de trabajo, sigue estos pasos para cerrar todo correctamente:
 
