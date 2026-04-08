@@ -1,0 +1,27 @@
+{
+  "icons": {
+    "search": "skills/svg-library/assets/icons/search.svg",
+    "close": "skills/svg-library/assets/icons/close.svg",
+    "menu": "skills/svg-library/assets/icons/menu.svg",
+    "plus": "skills/svg-library/assets/icons/plus.svg",
+    "trash": "skills/svg-library/assets/icons/trash.svg",
+    "edit": "skills/svg-library/assets/icons/edit.svg",
+    "copy": "skills/svg-library/assets/icons/copy.svg",
+    "check": "skills/svg-library/assets/icons/check.svg",
+    "info": "skills/svg-library/assets/icons/info.svg",
+    "alert": "skills/svg-library/assets/icons/alert.svg",
+    "home": "skills/svg-library/assets/icons/home.svg",
+    "user": "skills/svg-library/assets/icons/user.svg",
+    "settings": "skills/svg-library/assets/icons/settings.svg",
+    "bell": "skills/svg-library/assets/icons/bell.svg",
+    "eye": "skills/svg-library/assets/icons/eye.svg",
+    "chevron-right": "skills/svg-library/assets/icons/chevron-right.svg",
+    "chevron-left": "skills/svg-library/assets/icons/chevron-left.svg",
+    "chevron-down": "skills/svg-library/assets/icons/chevron-down.svg",
+    "external-link": "skills/svg-library/assets/icons/external-link.svg",
+    "arrow-right": "skills/svg-library/assets/icons/arrow-right.svg",
+    "arrow-left": "skills/svg-library/assets/icons/arrow-left.svg",
+    "arrow-up": "skills/svg-library/assets/icons/arrow-up.svg",
+    "arrow-down": "skills/svg-library/assets/icons/arrow-down.svg"
+  }
+}

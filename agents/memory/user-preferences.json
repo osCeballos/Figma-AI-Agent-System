@@ -1,0 +1,25 @@
+{
+  "projectInfo": {
+    "lastUpdate": "2026-04-07",
+    "version": "1.0"
+  },
+  "preferences": {
+    "grid": 8,
+    "borderRadius": 8,
+    "defaultPadding": 16,
+    "defaultGap": 8,
+    "fontFamily": "Inter",
+    "colorPalette": {
+      "brandPrimary": null,
+      "textHighContrast": null,
+      "backgroundMain": null
+    }
+  },
+  "successfulPatterns": [
+    {
+      "patternType": "layout",
+      "name": "ResponsiveGrid",
+      "properties": ["layoutMode: HORIZONTAL", "layoutWrap: WRAP"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de herramientas
+.gemini/
+.agent/
+.agents/
+.stitch/
+
+# Archivos temporales
+tmp/
+*.tmp
+*.log
+
+# Dependencias (si las hubiera)
+node_modules/
+dist/
+build/
+
+# Variables de entorno
+.env
+.env.local
