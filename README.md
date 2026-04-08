@@ -7,19 +7,19 @@
 3. [Lo que vas a instalar](#lo-que-vas-a-instalar)
 4. [Instalación — Paso a paso](#instalación--paso-a-paso)
    - [La terminal — tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
-   - [PASO 1 — Instala Node.js](#paso-1--instala-nodejs)
-   - [PASO 2 — Instala Figma Desktop](#paso-2--instala-figma-desktop)
-   - [PASO 3 — Instala Git](#paso-3--instala-git)
-   - [PASO 4 — Instala Opencode](#paso-4--instala-opencode)
-   - [PASO 5 — Descarga este proyecto](#paso-5--descarga-este-proyecto)
-   - [PASO 6 — Instala las dependencias del proyecto](#paso-6--instala-las-dependencias-del-proyecto)
-   - [PASO 7 — Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
-   - [PASO 8 — Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
-   - [PASO 9 — Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
-   - [PASO 10 — Comprueba que todo funciona](#paso-10--comprueba-que-todo-funciona-)
+   - [PASO 1 - Instala Node.js](#paso-1--instala-nodejs)
+   - [PASO 2 - Instala Figma Desktop](#paso-2--instala-figma-desktop)
+   - [PASO 3 - Instala Git](#paso-3--instala-git)
+   - [PASO 4 - Instala Opencode](#paso-4--instala-opencode)
+   - [PASO 5 - Descarga este proyecto](#paso-5--descarga-este-proyecto)
+   - [PASO 6 - Instala las dependencias del proyecto](#paso-6--instala-las-dependencias-del-proyecto)
+   - [PASO 7 - Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
+   - [PASO 8 - Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
+   - [PASO 9 - Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
+   - [PASO 10 - Comprueba que todo funciona](#paso-10--comprueba-que-todo-funciona-)
 5. [Tu primer diseño](#tu-primer-diseño)
 6. [Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
-7. [Algo ha ido mal — Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
+7. [Algo ha ido mal - Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
 8. [Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
 9. [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
 10. [Estructura del proyecto](#estructura-del-proyecto)
@@ -94,7 +94,7 @@ Cuando la abras verás una ventana con texto. Escribe los comandos exactamente c
 
 ---
 
-### PASO 1 — Instala Node.js
+### PASO 1 - Instala Node.js
 
 1. Ve a 👉 [nodejs.org](https://nodejs.org/)
 2. Descarga el botón grande que pone **"LTS — Recommended for most users"**
@@ -108,7 +108,7 @@ Cuando la abras verás una ventana con texto. Escribe los comandos exactamente c
 
 ---
 
-### PASO 2 — Instala Figma Desktop
+### PASO 2 - Instala Figma Desktop
 
 > Si ya tienes Figma Desktop instalado, puedes saltar al Paso 3.
 
@@ -118,7 +118,7 @@ Cuando la abras verás una ventana con texto. Escribe los comandos exactamente c
 
 ---
 
-### PASO 3 — Instala Git
+### PASO 3 - Instala Git
 
 Git es la herramienta que te permite descargar proyectos desde internet con la terminal.
 
@@ -127,7 +127,7 @@ Git es la herramienta que te permite descargar proyectos desde internet con la t
 
 ---
 
-### PASO 4 — Instala Opencode
+### PASO 4 - Instala Opencode
 
 Opencode es la plataforma donde viven los agentes. Se usa desde la terminal, igual que lo hacen los equipos de IA en entornos profesionales.
 
@@ -157,7 +157,7 @@ opencode --version
 
 ---
 
-### PASO 5 — Descarga este proyecto
+### PASO 5 - Descarga este proyecto
 
 Abre la terminal y escribe estos dos comandos, **uno después del otro**, pulsando Enter tras cada uno:
 
@@ -170,7 +170,7 @@ Verás texto moviéndose mientras se descarga. Cuando vuelva a aparecer el curso
 
 ---
 
-### PASO 6 — Instala las dependencias del proyecto
+### PASO 6 - Instala las dependencias del proyecto
 
 Con la terminal **aún dentro de la carpeta del proyecto** (la misma ventana del paso anterior), escribe:
 
@@ -182,7 +182,7 @@ Verás cómo se instalan paquetes automáticamente. Puede tardar entre 1 y 3 min
 
 ---
 
-### PASO 7 — Crea el archivo de configuración
+### PASO 7 - Crea el archivo de configuración
 
 Ahora tienes que crear un archivo que le dice al sistema cómo conectarse a Figma.
 
@@ -247,7 +247,7 @@ Ahora tienes que crear un archivo que le dice al sistema cómo conectarse a Figm
 
 ---
 
-### PASO 8 — Arranca el servidor de conexión
+### PASO 8 - Arranca el servidor de conexión
 
 Este servidor es el "puente" entre los agentes y Figma. **Tienes que arrancarlo cada vez que quieras usar el sistema.**
 
@@ -261,7 +261,7 @@ Verás un mensaje confirmando que está escuchando. **No cierres esta ventana de
 
 ---
 
-### PASO 9 — Instala el plugin en Figma Desktop
+### PASO 9 - Instala el plugin en Figma Desktop
 
 1. Abre **Figma Desktop** (la app, no el navegador)
 2. Haz clic en el icono del logo de Figma (arriba a la izquierda)
@@ -276,7 +276,7 @@ Verás un mensaje confirmando que está escuchando. **No cierres esta ventana de
 
 ---
 
-### PASO 10 — Comprueba que todo funciona ✅
+### PASO 10 - Comprueba que todo funciona
 
 1. Confirma que el servidor del Paso 9 sigue corriendo en la terminal
 2. Abre cualquier archivo en Figma Desktop
