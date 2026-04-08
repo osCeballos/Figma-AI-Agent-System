@@ -307,7 +307,9 @@ Verás un mensaje confirmando que está escuchando. **No cierres esta ventana de
    ```bash
    opencode
    ```
-
+   
+<img width="2274" height="1108" alt="image" src="https://github.com/user-attachments/assets/acb51b98-783b-4469-b7fe-2c140615d95b" />
+ 
    Y escribe en el chat:
 
    ```
@@ -395,6 +397,9 @@ Salida esperada:
 
 Adjunto: README.md del proyecto.
 ```
+
+<img width="564" height="698" alt="image" src="https://github.com/user-attachments/assets/90ddbf90-c747-454d-8fbb-aa2966769165" />
+
 
 ---
 
