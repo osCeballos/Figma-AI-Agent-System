@@ -329,8 +329,6 @@ Verás un mensaje confirmando que está escuchando. **No cierres esta ventana de
    opencode
    ```
 
-<img width="2274" height="1108" alt="image" src="https://github.com/user-attachments/assets/acb51b98-783b-4469-b7fe-2c140615d95b" />
- 
    Y escribe en el chat:
 
 ```
