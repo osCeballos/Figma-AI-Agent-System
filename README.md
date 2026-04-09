@@ -59,20 +59,36 @@ Así es como tus ideas se convierten en nodos de Figma reales:
 
 ```mermaid
 graph TD
-    User([<b>Tú</b><br/>Escribes una petición]) --> Director[<b>Director</b><br/>Coordina el equipo]
-    Director --> Memory[<b>Memory</b><br/>Recupera tus preferencias]
-    Memory --> Design[<b>Design</b><br/>Propuesta visual]
+    User([<b>Tú</b><br/>Escribes una petición]) --> Director[<b>Director</b>]
+    Director <--> State[("<b>Estado JSON</b><br/>Fuente de verdad")]
+    
+    Director --> Memory[<b>Memory</b>]
+    Memory <--> State
+    
+    Memory --> Design[<b>Design</b>]
+    Design <--> State
+    
     Design -- "<b>Espera tu aprobación</b>" --> Approval{¿Te gusta?}
     Approval -- No --> Design
+    
     Approval -- Sí --> Parallel[<b>Construcción Paralela</b>]
-    Parallel -->|Simultáneo| Tokens[Tokens]
-    Parallel -->|Simultáneo| Layout[Layout]
-    Tokens --> Sync[Sincronización]
-    Layout --> Sync[Sincronización]
-    Sync --> Components[Components]
+    Parallel --> Tokens[<b>Tokens</b>]
+    Parallel --> Layout[<b>Layout</b>]
+    
+    Tokens <--> State
+    Layout <--> State
+    
+    Tokens --> Components[<b>Components</b>]
+    Layout --> Components
+    Components <--> State
+    
     Components --> Auditor[<b>Auditor</b>]
+    Auditor <--> State
+    
+    Auditor -- "<b>Auto-corrección WCAG</b>" --> Auditor
     Auditor --> Figma([<b>Figma</b><br/>Diseño finalizado])
 
+    style State fill:#f96,stroke:#333,stroke-width:4px
     style User fill:#f9f,stroke:#333,stroke-width:2px
     style Figma fill:#0f0,stroke:#333,stroke-width:2px
     style Design fill:#ff9,stroke:#333,stroke-width:4px
