@@ -4,26 +4,27 @@
 
 1. [¿Para qué sirve este sistema?](#para-qué-sirve-este-sistema)
 2. [Cómo funciona: Tu equipo de diseño virtual](#cómo-funciona-tu-equipo-de-diseño-virtual)
-3. [Lo que vas a instalar](#lo-que-vas-a-instalar)
-4. [Instalación - Paso a paso](#instalación--paso-a-paso)
+3. [🚀 Novedades y Capacidades Avanzadas](#-novedades-y-capacidades-avanzadas)
+4. [Lo que vas a instalar](#lo-que-vas-a-instalar)
+5. [Instalación - Paso a paso](#instalación--paso-a-paso)
    - [La terminal - tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
    - [PASO 1 - Instala Node.js](#paso-1--instala-nodejs)
    - [PASO 2 - Instala Figma Desktop](#paso-2--instala-figma-desktop)
    - [PASO 3 - Instala Git](#paso-3--instala-git)
    - [PASO 4 - Instala Opencode](#paso-4--instala-opencode)
    - [PASO 5 - Descarga este proyecto](#paso-5--descarga-este-proyecto)
-   - [PASO 6 - Instala las dependencias del proyecto] (#paso-6--instala-las-dependencias-del-proyecto)
+   - [PASO 6 - Instala las dependencias del proyecto](#paso-6--instala-las-dependencias-del-proyecto)
    - [PASO 7 - Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
    - [PASO 8 - Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
    - [PASO 9 - Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
    - [PASO 10 - Comprueba que todo funciona](#paso-10--comprueba-que-todo-funciona-)
-5. [Tu primer diseño](#tu-primer-diseño)
-6. [Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
-7. [Algo ha ido mal - Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
-8. [Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
-9. [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
-10. [Estructura del proyecto](#estructura-del-proyecto)
-11. [Créditos](#créditos)
+6. [Tu primer diseño](#tu-primer-diseño)
+7. [Instalación asistida con Google Antigravity](#-instalación-asistida-con-google-antigravity)
+8. [Algo ha ido mal - Solución de problemas](#algo-ha-ido-mal--solución-de-problemas)
+9. [Atajo: El botón de inicio (Recomendado)](#-atajo-el-botón-de-inicio-recomendado)
+10. [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)
+11. [Estructura del proyecto](#estructura-del-proyecto)
+12. [Créditos](#créditos)
 
 ---
 
@@ -92,6 +93,29 @@ Para que el sistema funcione, cada agente tiene una especialidad concreta:
 
 > [!TIP]
 > **Tú tienes la última palabra:** El sistema nunca empezará a construir en la "fase técnica" hasta que tú no le des el visto bueno a la propuesta visual del agente de Diseño.
+
+---
+
+## 🚀 Novedades y Capacidades Avanzadas
+
+El sistema ha evolucionado para incluir funciones de nivel industrial que garantizan la calidad y velocidad:
+
+### ⚡ Auto-corrección de Accesibilidad (WCAG 2.1 AA)
+El **Auditor Subagent** ya no solo detecta errores; ahora tiene autoridad para **corregirlos automáticamente**. 
+- **Cálculo Nativo:** Utiliza una herramienta local ultra-rápida (`calc_wcag_contrast`) para verificar contrastes.
+- **Resolución Inteligente:** Si un texto no es legible, el agente aplica el ajuste sugerido instantáneamente de forma autónoma.
+- **Validación Shift-Left:** Los errores se interceptan desde la fase de creación de tokens, asegurando que el diseño nazca accesible.
+
+### 🧠 Protocolo de Estado Inteligente (State Management)
+Hemos reducido la latencia y el coste de API mediante un sistema de gestión de estados centralizado:
+- **Objeto de Estado Único:** Los agentes comparten una fuente de verdad compartida a través de un objeto JSON consolidado.
+- **Cero Alucinaciones:** Al tener acceso directo al estado actual, los agentes ya no dependen de historiales de chat largos y confusos.
+- **Comunicación Eficiente:** Los subagentes informan de sus avances mediante **deltas**, optimizando el uso de la memoria.
+
+### 🛠️ Infraestructura Reforzada e Idempotencia
+- **Protección contra duplicados:** El sistema comprueba si un componente o variable ya existe en Figma antes de intentar crearlo de nuevo.
+- **Herramientas Nativas MCP:** Integración de herramientas locales para cálculos matemáticos y procesamiento de color que no dependen de la nube.
+- **Maintenance Automática:** Los registros de aprendizaje y logs se comprimen y mantienen automáticamente para evitar la degradación del rendimiento.
 
 ---
 
@@ -490,7 +514,8 @@ figma-ai-agent-system/
 │       ├── design-patterns/
 │       ├── css-to-figma-api/
 │       ├── figma-grid-calculus/
-│       └── svg-library/
+│       ├── svg-library/
+│       └── wcag-calculator/      ← Cálculo nativo de contrastes WCAG
 │
 ├── manifest.json                 ← El "DNI" del plugin para que Figma lo reconozca
 └── opencode.json                 ← Configuración de conectores y servidor

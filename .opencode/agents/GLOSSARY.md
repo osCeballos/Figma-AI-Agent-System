@@ -67,3 +67,6 @@ Este documento define la terminología estándar utilizada por el Director y los
 ### 11. Tono Emocional
 **Definición:** La respuesta emocional que el diseño busca provocar en el usuario, inferida del tipo de producto y audiencia. Guía las decisiones de color, tipografía y espaciado del @design-subagent.
 - **Ejemplos:** Confianza (fintech), Energía (fitness), Calma (salud), Innovación (tech).
+
+### 12. Shift-left WCAG
+**Definición:** Estrategia de diseño que consiste en mover la validación de accesibilidad a las fases más tempranas del proceso (Fase A: Tokens). Esto garantiza que los cimientos del diseño sean accesibles antes de construir layouts o componentes, evitando correcciones costosas en fases finales.
