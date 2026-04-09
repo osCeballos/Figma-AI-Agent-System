@@ -417,8 +417,6 @@ Salida esperada:
 Adjunto: README.md del proyecto.
 ```
 
-<img width="564" height="698" alt="image" src="https://github.com/user-attachments/assets/90ddbf90-c747-454d-8fbb-aa2966769165" />
-
 ---
 
 ## Algo ha ido mal - Solución de problemas
