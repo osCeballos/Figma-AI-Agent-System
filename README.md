@@ -61,30 +61,30 @@ Así es como tus ideas se convierten en nodos de Figma reales:
 graph TD
     User([<b>Tú</b><br/>Escribes una petición]) --> Director[<b>Director</b>]
     Director <--> State[("<b>Estado JSON</b><br/>Fuente de verdad")]
-    
+
     Director --> Memory[<b>Memory</b>]
     Memory <--> State
-    
+
     Memory --> Design[<b>Design</b>]
     Design <--> State
-    
+
     Design -- "<b>Espera tu aprobación</b>" --> Approval{¿Te gusta?}
     Approval -- No --> Design
-    
+
     Approval -- Sí --> Parallel[<b>Construcción Paralela</b>]
     Parallel --> Tokens[<b>Tokens</b>]
     Parallel --> Layout[<b>Layout</b>]
-    
+
     Tokens <--> State
     Layout <--> State
-    
+
     Tokens --> Components[<b>Components</b>]
     Layout --> Components
     Components <--> State
-    
+
     Components --> Auditor[<b>Auditor</b>]
     Auditor <--> State
-    
+
     Auditor -- "<b>Auto-corrección WCAG</b>" --> Auditor
     Auditor --> Figma([<b>Figma</b><br/>Diseño finalizado])
 
