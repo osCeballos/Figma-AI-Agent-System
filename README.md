@@ -81,24 +81,7 @@ El sistema ha evolucionado para incluir funciones de nivel industrial que garant
 
 ### ⚡ Eficiencia Operativa (Antes vs. Ahora)
 
-```mermaid
-gantt
-    title Optimización de Workflow: Serial vs. Paralelo
-    dateFormat  m s
-    axisFormat %M:%S
-    
-    section ANTIGUO (Legacy)
-    Diseño y Aprobación :active, a1, 0 0, 2m
-    Tokens Manuales     :a2, after a1, 2m
-    Maquetación (Layout):a3, after a2, 3m
-    Loops de Corrección :crit, a4, after a3, 4m
-
-    section NUEVO (JSON Driven)
-    Propuesta Express   :done, b1, 0 0, 1m
-    Tokens & Layout     :active, b2, after b1, 2m
-    Auto-Validación     :b3, after b2, 1m
-
-```
+<img width="2656" height="560" alt="image" src="https://github.com/user-attachments/assets/8f3058c2-a4c1-4980-b020-eb09a4f09777" />
 
 ---
 
