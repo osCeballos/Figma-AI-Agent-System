@@ -4,7 +4,7 @@
 
 1. [¿Para qué sirve este sistema?](#para-qué-sirve-este-sistema)
 2. [Cómo funciona: Tu equipo de diseño virtual](#cómo-funciona-tu-equipo-de-diseño-virtual)
-3. [🚀 Novedades y Capacidades Avanzadas](#-novedades-y-capacidades-avanzadas)
+3. [Novedades y Capacidades Avanzadas](#novedades-y-capacidades-avanzadas)
 4. [Lo que vas a instalar](#lo-que-vas-a-instalar)
 5. [Instalación - Paso a paso](#instalación--paso-a-paso)
    - [La terminal - tu herramienta profesional](#la-terminal--tu-herramienta-profesional)
@@ -95,40 +95,44 @@ graph TD
     style Parallel fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
-
 ### ¿Quién es quién en tu equipo?
 
 Para que el sistema funcione, cada agente tiene una especialidad concreta:
 
-- **🧠 figma-director:** Es el jefe de proyectos. Escucha tu petición, decide qué pasos dar y reparte el trabajo entre los demás expertos.
-- **💾 memory-subagent:** Es el historiador. Recuerda si te gusta el estilo minimalista, si prefieres ciertos colores o qué decisiones tomaste en el pasado.
-- **🎨 design-subagent:** Es el director creativo. Decide la paleta de colores, la tipografía y el "look & feel" basándose en teoría del diseño real.
-- **📐 layout-subagent:** Es el arquitecto. Se encarga de la estructura, las rejillas (grids) y de que todo use **AutoLayout** perfectamente.
-- **📦 components-subagent:** Es el constructor. Crea los botones, tarjetas y elementos reutilizables con sus variantes.
-- **🔍 auditor-subagent:** Es el control de calidad. Revisa que los contrastes sean accesibles (WCAG) y que los nombres de las capas estén impecables.
+- **figma-director:** Es el jefe de proyectos. Escucha tu petición, decide qué pasos dar y reparte el trabajo entre los demás expertos.
+- **memory-subagent:** Es el historiador. Recuerda si te gusta el estilo minimalista, si prefieres ciertos colores o qué decisiones tomaste en el pasado.
+- **design-subagent:** Es el director creativo. Decide la paleta de colores, la tipografía y el "look & feel" basándose en teoría del diseño real.
+- **layout-subagent:** Es el arquitecto. Se encarga de la estructura, las rejillas (grids) y de que todo use **AutoLayout** perfectamente.
+- **components-subagent:** Es el constructor. Crea los botones, tarjetas y elementos reutilizables con sus variantes.
+- **auditor-subagent:** Es el control de calidad. Revisa que los contrastes sean accesibles (WCAG) y que los nombres de las capas estén impecables.
 
 > [!TIP]
 > **Tú tienes la última palabra:** El sistema nunca empezará a construir en la "fase técnica" hasta que tú no le des el visto bueno a la propuesta visual del agente de Diseño.
 
 ---
 
-## 🚀 Novedades y Capacidades Avanzadas
+## Novedades y Capacidades Avanzadas
 
 El sistema ha evolucionado para incluir funciones de nivel industrial que garantizan la calidad y velocidad:
 
-### ⚡ Auto-corrección de Accesibilidad (WCAG 2.1 AA)
-El **Auditor Subagent** ya no solo detecta errores; ahora tiene autoridad para **corregirlos automáticamente**. 
+### Auto-corrección de Accesibilidad (WCAG 2.1 AA)
+
+El **Auditor Subagent** ya no solo detecta errores; ahora tiene autoridad para **corregirlos automáticamente**.
+
 - **Cálculo Nativo:** Utiliza una herramienta local ultra-rápida (`calc_wcag_contrast`) para verificar contrastes.
 - **Resolución Inteligente:** Si un texto no es legible, el agente aplica el ajuste sugerido instantáneamente de forma autónoma.
 - **Validación Shift-Left:** Los errores se interceptan desde la fase de creación de tokens, asegurando que el diseño nazca accesible.
 
-### 🧠 Protocolo de Estado Inteligente (State Management)
+### Protocolo de Estado Inteligente (State Management)
+
 Hemos reducido la latencia y el coste de API mediante un sistema de gestión de estados centralizado:
+
 - **Objeto de Estado Único:** Los agentes comparten una fuente de verdad compartida a través de un objeto JSON consolidado.
 - **Cero Alucinaciones:** Al tener acceso directo al estado actual, los agentes ya no dependen de historiales de chat largos y confusos.
 - **Comunicación Eficiente:** Los subagentes informan de sus avances mediante **deltas**, optimizando el uso de la memoria.
 
-### 🛠️ Infraestructura Reforzada e Idempotencia
+### Infraestructura Reforzada e Idempotencia
+
 - **Protección contra duplicados:** El sistema comprueba si un componente o variable ya existe en Figma antes de intentar crearlo de nuevo.
 - **Herramientas Nativas MCP:** Integración de herramientas locales para cálculos matemáticos y procesamiento de color que no dependen de la nube.
 - **Maintenance Automática:** Los registros de aprendizaje y logs se comprimen y mantienen automáticamente para evitar la degradación del rendimiento.
@@ -354,14 +358,14 @@ Verás un mensaje confirmando que está escuchando. **No cierres esta ventana de
    ```bash
    opencode
    ```
-   
+
 <img width="2274" height="1108" alt="image" src="https://github.com/user-attachments/assets/acb51b98-783b-4469-b7fe-2c140615d95b" />
  
    Y escribe en el chat:
 
-   ```
-   Conecta con Figma, canal [el número que ves en el plugin]
-   ```
+```
+Conecta con Figma, canal [el número que ves en el plugin]
+```
 
 6. Si el agente responde confirmando la conexión... **¡todo está listo!** 🎉
 
@@ -446,7 +450,6 @@ Adjunto: README.md del proyecto.
 ```
 
 <img width="564" height="698" alt="image" src="https://github.com/user-attachments/assets/90ddbf90-c747-454d-8fbb-aa2966769165" />
-
 
 ---
 
