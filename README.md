@@ -57,7 +57,8 @@ Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agent
 
 Así es como tus ideas se convierten en nodos de Figma reales:
 
-<img width="920" height="1524" alt="image" src="https://github.com/user-attachments/assets/d3720c66-2b61-4d4e-bc24-bb587e4edf31" />
+![Frame 25](https://github.com/user-attachments/assets/8403bcb8-363e-4bd6-989d-e6e33c3b3ce0)
+
 
 ### ¿Quién es quién en tu equipo?
 
