@@ -1,6 +1,12 @@
 # 🎨 Figma AI Agent System
 ### Guía de instalación para alumnos
 
+![202604100147](https://github.com/user-attachments/assets/bcf67cdf-7afe-4359-b95e-db924c5a1fd4)
+
+![Node](https://img.shields.io/badge/Node.js-≥20-green)
+![License](https://img.shields.io/badge/Licencia-MIT-blue)
+![Figma](https://img.shields.io/badge/Figma-Desktop-purple)
+
 > **No necesitas saber programar.** Sigue cada paso en orden y funcionará. Si algo falla, ve directo a [Solución de problemas](#-solución-de-problemas).
 
 ---
