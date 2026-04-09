@@ -57,43 +57,7 @@ Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agent
 
 Así es como tus ideas se convierten en nodos de Figma reales:
 
-```mermaid
-graph TD
-    User([<b>Tú</b><br/>Escribes una petición]) --> Director[<b>Director</b>]
-    Director <--> State[("<b>Estado JSON</b><br/>Fuente de verdad")]
-
-    Director --> Memory[<b>Memory</b>]
-    Memory <--> State
-
-    Memory --> Design[<b>Design</b>]
-    Design <--> State
-
-    Design -- "<b>Espera tu aprobación</b>" --> Approval{¿Te gusta?}
-    Approval -- No --> Design
-
-    Approval -- Sí --> Parallel[<b>Construcción Paralela</b>]
-    Parallel --> Tokens[<b>Tokens</b>]
-    Parallel --> Layout[<b>Layout</b>]
-
-    Tokens <--> State
-    Layout <--> State
-
-    Tokens --> Components[<b>Components</b>]
-    Layout --> Components
-    Components <--> State
-
-    Components --> Auditor[<b>Auditor</b>]
-    Auditor <--> State
-
-    Auditor -- "<b>Auto-corrección WCAG</b>" --> Auditor
-    Auditor --> Figma([<b>Figma</b><br/>Diseño finalizado])
-
-    style State fill:#f96,stroke:#333,stroke-width:4px
-    style User fill:#f9f,stroke:#333,stroke-width:2px
-    style Figma fill:#0f0,stroke:#333,stroke-width:2px
-    style Design fill:#ff9,stroke:#333,stroke-width:4px
-    style Parallel fill:#bbf,stroke:#333,stroke-width:2px
-```
+<img width="920" height="1524" alt="image" src="https://github.com/user-attachments/assets/d3720c66-2b61-4d4e-bc24-bb587e4edf31" />
 
 ### ¿Quién es quién en tu equipo?
 
