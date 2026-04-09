@@ -79,7 +79,7 @@ Para que el sistema funcione, cada agente tiene una especialidad concreta:
 
 El sistema ha evolucionado para incluir funciones de nivel industrial que garantizan la calidad y velocidad:
 
-### ⚡ Eficiencia Operativa (Antes vs. Ahora)
+### Eficiencia Operativa (Antes vs. Ahora)
 
 ![Frame 26](https://github.com/user-attachments/assets/dd908536-0f77-466d-a179-fac4354ff66f)
 
