@@ -79,6 +79,30 @@ Para que el sistema funcione, cada agente tiene una especialidad concreta:
 
 El sistema ha evolucionado para incluir funciones de nivel industrial que garantizan la calidad y velocidad:
 
+### ⚡ Eficiencia Operativa (Antes vs. Ahora)
+
+```mermaid
+gantt
+    title Comparativa de Velocidad (Fase Técnica)
+    dateFormat  HH:mm
+    axisFormat  %M:%S
+    
+    section FLUJO ANTIGUO (Carga Serial)
+    Diseño Visual          :00:00, 1m
+    Aprobación             :01:00, 1m
+    Creación Tokens        :02:00, 2m
+    Estructura Layout      :04:00, 3m
+    Audit/Corrección Loops :07:00, 4m
+    
+    section NUEVO SISTEMA (Estado JSON + Paralelo)
+    Diseño Propuesta        :00:00, 30s
+    Aprobación              :00:30, 30s
+    Tokens y Layout (PARALELIZADO) :01:00, 2m
+    Auditoría / Auto-Correción :03:00, 1m
+```
+
+---
+
 ### Auto-corrección de Accesibilidad (WCAG 2.1 AA)
 
 El **Auditor Subagent** ya no solo detecta errores; ahora tiene autoridad para **corregirlos automáticamente**.
