@@ -12,7 +12,7 @@
    - [PASO 3 - Instala Git](#paso-3--instala-git)
    - [PASO 4 - Instala Opencode](#paso-4--instala-opencode)
    - [PASO 5 - Descarga este proyecto](#paso-5--descarga-este-proyecto)
-   - [PASO 6 - Instala las dependencias del proyecto](#paso-6--instala-las-dependencias-del-proyecto)
+   - [PASO 6 - Instala las dependencias del proyecto] (#paso-6--instala-las-dependencias-del-proyecto)
    - [PASO 7 - Crea el archivo de configuración](#paso-7--crea-el-archivo-de-configuración)
    - [PASO 8 - Arranca el servidor de conexión](#paso-8--arranca-el-servidor-de-conexión)
    - [PASO 9 - Instala el plugin en Figma Desktop](#paso-9--instala-el-plugin-en-figma-desktop)
@@ -63,14 +63,21 @@ graph TD
     Memory --> Design[<b>Design</b><br/>Propuesta visual]
     Design -- "<b>Espera tu aprobación</b>" --> Approval{¿Te gusta?}
     Approval -- No --> Design
-    Approval -- Sí --> Execution[<b>Construcción Técnica</b><br/>Tokens + Layout + Components]
-    Execution --> Auditor[<b>Auditor</b><br/>Control de calidad y accesible]
+    Approval -- Sí --> Parallel[<b>Construcción Paralela</b>]
+    Parallel -->|Simultáneo| Tokens[Tokens]
+    Parallel -->|Simultáneo| Layout[Layout]
+    Tokens --> Sync[Sincronización]
+    Layout --> Sync[Sincronización]
+    Sync --> Components[Components]
+    Components --> Auditor[<b>Auditor</b>]
     Auditor --> Figma([<b>Figma</b><br/>Diseño finalizado])
 
     style User fill:#f9f,stroke:#333,stroke-width:2px
     style Figma fill:#0f0,stroke:#333,stroke-width:2px
     style Design fill:#ff9,stroke:#333,stroke-width:4px
+    style Parallel fill:#bbf,stroke:#333,stroke-width:2px
 ```
+
 
 ### ¿Quién es quién en tu equipo?
 

@@ -38,13 +38,13 @@ Ratio = (L1 + 0.05) / (L2 + 0.05)
 (L1 = luminancia más clara, L2 = luminancia más oscura)
 ```
 
-Proceso de auditoría:
-1. Usar `get_document_info` (o `get_selection`) para identificar nodos de tipo `TEXT`.
-2. Para cada nodo de texto, ejecutar `get_node_info` para obtener:
-   - `fills` (color del texto).
-   - `backgroundColor` o rellenos del nodo padre/fondo.
-3. **Cálculo Interno:** El agente debe realizar matemáticamente el cálculo de luminancia y el ratio de contraste según la fórmula WCAG.
-4. Reportar lista de violaciones con nodeId, contenido del texto, ratio calculado y colores detectados.
+Proceso de auditoría de contraste:
+1. Identificar nodos de tipo `TEXT` y sus fondos (usando `get_node_info`).
+2. **Cálculo Técnico Obligatorio:** NO razonar el contraste en lenguaje natural. Ejecutar el cálculo en un bloque de código JavaScript. 
+3. **Formato de Salida:** El resultado del cálculo debe presentarse exclusivamente como un objeto JSON con los ratios calculados y el veredicto (Pass/Fail).
+4. Reportar la lista final de violaciones en el reporte de la Auditoría basándose en los datos del JSON.
+
+
 
 ---
 

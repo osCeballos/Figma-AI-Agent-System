@@ -70,11 +70,14 @@ No tienes acceso a herramientas de creación, modificación o lectura de archivo
 ## Flujo de trabajo estándar
 
 1. **Conectar & Verificar** → `join_channel` y confirmar la disponibilidad de los MCP de **Figma** y **Filesystem**.
-2. **Cimentación Semántica (Fase 0 & A)**:
-   - **Condición de Salto**: Si el entorno reporta que `user-preferences.json` no existe o está vacío, **saltar Fase 0** y proceder.
-   - De lo contrario, consultar al `@memory-subagent` para preferencias, **ejecutar `get_local_components`** para mapear el estado actual del archivo.
-   - Fase 0.5: Criterio Visual → Delegar al @design-subagent con el brief del usuario y el output de memoria. El design-subagent produce una propuesta de estilo, paleta y tipografía que el Director debe presentar al usuario para aprobación explícita. NO continuar a Fase A hasta recibir aprobación. Los valores RGBA aprobados se pasan directamente al @tokens-subagent.
-3. **Fase B: Análisis Estructural (Análisis)** → Delegar la maquetación a `@layout-subagent`.
+2. **Cimentación Semántica y Estructural (Fases 0, A y B)**:
+   - **Fase 0**: Consultar al `@memory-subagent` para preferencias (si existen).
+   - **Fase 0.5 (Criterio Visual)**: Delegar al `@design-subagent` para propuesta de estilo. **Punto de Bloqueo**: Se requiere aprobación explícita del usuario antes de continuar.
+   - **Ejecución Paralela (A + B)**: Una vez aprobada la propuesta, el Director debe lanzar simultáneamente:
+     - **Fase A**: Delegar a `@tokens-subagent` para creación de variables.
+     - **Fase B**: Delegar a `@layout-subagent` para maquetación base y assets.
+   - **Sincronización**: El Director debe esperar la confirmación de éxito de AMBOS subagentes antes de transicionar a la Fase C.
+
 4. **Fase C-E: Creación de Componentes (Creación)** → **Lógica de Transición B → C:** Paso Crítico: Capturar los nodeIds de los frames base generados y pasarlos al @components-subagent junto con el inventario filtrado de componentes existentes. El objetivo de este mapeo es exclusivamente prevenir duplicación de nombres, no gestionar Binding. El Binding de variable es siempre un proceso manual guiado documentado en la Fase D.2. Antes de inyectar el inventario local al `@components-subagent`, el Director debe filtrar el array de `get_local_components` para incluir únicamente los componentes cuyo nombre comparta prefijo o categoría semántica con los frames que se van a componentizar. Nunca transferir el array maestro completo.
 5. **Auditoría de Calidad (Final)** → Delegar al `@auditor-subagent` para verificar accesibilidad (WCAG AA) e higiene de nomenclatura.
 6. **Cierre y Aprendizaje** → Notificar al `@memory-subagent` sobre las lecciones del ciclo para actualizar `user-preferences.json`.
@@ -111,17 +114,19 @@ Devuélveme el collectionId y los IDs de cada variable creada.
 
 ## Secuencia de fases
 
-| Fase | Subagente              | Responsabilidad                       |
-| ---- | ---------------------- | ------------------------------------- |
-| 0    | `@memory-subagent`     | Contexto evolutivo y aprendizaje      |
-| 0.5  | `@design-subagent`     | Análisis de brief, propuesta de estilo, paleta con teoría de color y tipografía |
-| A    | `@tokens-subagent`     | Variables y tokens de diseño          |
-| B    | `@layout-subagent`     | Frames con AutoLayout y Assets (SVGs) |
-| C–E  | `@components-subagent` | Componentización y variantes          |
-| Final| `@auditor-subagent`    | Accesibilidad e higiene               |
-| Apren| `@memory-subagent`     | Cierre de ciclo y guardado            |
+| Fase | Subagente              | Responsabilidad                       | Dependencia           |
+| ---- | ---------------------- | ------------------------------------- | --------------------- |
+| 0    | `@memory-subagent`     | Contexto evolutivo y aprendizaje      | Ninguna               |
+| 0.5  | `@design-subagent`     | Análisis de brief y propuesta visual  | Fase 0                |
+| A    | `@tokens-subagent`     | Variables y tokens de diseño          | Fase 0.5 (Aprobación) |
+| B    | `@layout-subagent`     | Frames con AutoLayout y Assets (SVGs) | Fase 0.5 (Aprobación) |
+| C–E  | `@components-subagent` | Componentización y variantes          | Fase A y Fase B       |
+| Final| `@auditor-subagent`    | Accesibilidad e higiene               | Fase C–E              |
+| Apren| `@memory-subagent`     | Cierre de ciclo y guardado            | Fase Final            |
 
-No inicies una fase sin confirmar que la anterior se completó correctamente.
+> [!IMPORTANT]
+> **Regla de Paralelismo:** No inicies una fase si sus dependencias de datos (columna Dependencia) no se han completado. Fase A y B son independientes entre sí y pueden ejecutarse en paralelo.
+
 
 ---
 
@@ -132,5 +137,6 @@ No inicies una fase sin confirmar que la anterior se completó correctamente.
     - Los errores de lectura o falta de conexión al Filesystem MCP **NO SON CRÍTICOS** en esta fase. Si falla, notificar inicio con "Memoria Limpia" e iniciar Fase A.
 - Fase 0.5 (Diseño): Si el usuario rechaza la propuesta de estilo, el @design-subagent debe generar una propuesta alternativa ajustando los parámetros rechazados. Máximo 3 iteraciones. Si tras 3 propuestas no hay acuerdo, el Director debe solicitar al usuario que proporcione referencias visuales concretas.
 - **Fases A-E:** Si un subagente reporta un error o ID nulo en estas fases, detén el flujo, informa al usuario y espera instrucción.
-- No intentes reintentos automáticos.
+- **Protocolo Anti-Bucle:** Si un subagente falla 3 veces consecutivas con el mismo error en la misma herramienta, el Director debe abortar la delegación inmediatamente, mostrar el error técnico al usuario y solicitar asistencia manual. PROHIBIDO el reintento infinito.
+- No intentes reintentos automáticos sin haber ajustado el prompt de delegación.
 - Si el plugin no responde, pide al usuario que verifique que está abierto y conectado al canal correcto.

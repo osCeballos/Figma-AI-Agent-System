@@ -15,9 +15,7 @@ No creas frames ni variables. Recibes IDs de frames ya creados por `@layout-suba
 > **Glosario:** Consulta las definiciones estándar de Binding, Component Property, Component Set y Slot en [agents/GLOSSARY.md](agents/GLOSSARY.md).
 
 > [!TIP]
-> **SÍ PUEDES** crear Component Properties (Boolean, Text, Instance Swap, Variant) usando la herramienta `add_component_property`. Esta es tu función principal en la Fase D. 
-> 
-> **IMPORTANTE:** Actualmente **NO PUEDES** realizar tareas de **Binding** automatizadas a nodos hijos. Para cualquier necesidad de **Binding de variable**, usa exclusivamente `add_component_property` en el componente principal y emite inmediatamente la guía de **Binding manual** paso a paso para el usuario.
+> **IMPORTANTE:** Actualmente **NO PUEDES** crear VARIANTs directamente con la herramienta `add_component_property`. Esta herramienta solo soporta `BOOLEAN`, `TEXT` e `INSTANCE_SWAP`. Para cualquier necesidad de **Binding de variable**, usa exclusivamente `add_component_property` en el componente principal y emite inmediatamente la guía de **Binding manual** paso a paso para el usuario.
 
 ---
 
@@ -26,9 +24,11 @@ No creas frames ni variables. Recibes IDs de frames ya creados por `@layout-suba
 - `get_node_info` — verificar tipo de nodo antes de operar
 - `convert_to_frame` — preparar nodos para componentización
 - `create_component_from_node` — crear componentes maestros
-- `add_component_property` — añadir propiedades de variante o componente (una por llamada)
+- `add_component_property` — añadir propiedades de componente (parámetros estrictos: `propertyName`, `propertyType`, `defaultValue`). Tipos soportados: `BOOLEAN`, `TEXT`, `INSTANCE_SWAP`.
+- `set_node_properties` — **Automated Binding:** Vincular nodos hijos a las propiedades del componente mediante el campo `componentPropertyReferences`.
 - `combine_as_variants` — consolidar en component set
 - `view_file` — leer biblioteca de assets (SVGs) (Requiere MCP Filesystem)
+
  
  > [!IMPORTANT]
  > **PROHIBICIÓN DE ALUCINAR ASSETS:** Antes de llamar a `view_file`, verifica que el MCP de **Filesystem** esté conectado. Si no tienes acceso al disco local, no inventes el contenido de los iconos; informa al Director y solicita acceso al sistema de archivos.
@@ -97,42 +97,38 @@ create_component_from_node({
 
 ## Fase D — Propiedades y Variantes
 
+### Paso 2.1: Creación de Propiedad
+
 ```javascript
-// Una llamada por propiedad:
 add_component_property({
   nodeId: 'component_id',
-  name: 'State',
-  type: 'VARIANT',
-  value: 'Default'
+  propertyName: 'HasIcon',
+  propertyType: 'BOOLEAN',
+  defaultValue: false
 });
-
-add_component_property({
-  nodeId: 'component_id',
-  name: 'HasIcon',
-  type: 'BOOLEAN',
-  value: false
-});
-
-// Para crear variantes: nombrar cada nodo siguiendo estrictamente Prop=Value.
 ```
+
+### Paso 2.2: Binding Automatizado (Obligatorio)
+**Tras crear la propiedad, el agente DEBE realizar el enlace inmediatamente.** No delegar al usuario. Usa los `nodeIds` de las capas hijas identificadas en la Fase C.
+
+```javascript
+// Ejemplo: Vincular visibilidad de un icono a la propiedad boolean creada
+set_node_properties({
+  nodeId: 'child_node_id',
+  componentPropertyReferences: {
+    visible: 'component_id:propertyName' // El ID suele ser una combinación dependiente del MCP
+  }
+});
+```
+
+> [!IMPORTANT]
+> **Regla de Cero Fricción:** Una fase de componentización no se considera terminada hasta que todas las propiedades añadidas (Booleanos, Textos o Swaps) estén vinculadas técnicamente a sus nodos correspondientes.
+
 
 ---
 
-## Fase D.2 — Protocolo de Binding Manual (Oficial)
+<!-- Fase D.2 de Binding Manual ha sido ELIMINADA y sustituida por el protocolo automatizado en el Paso 2.2 -->
 
-> **REGLA DE CERO ALUCINACIONES:** El agente **NO debe intentar usar funciones de binding no soportadas** por el servidor MCP o no documentadas en este sistema (ej: `componentPropertyReferences`).
-> Para cualquier necesidad de **Binding de variable** (ej. visibilidad de un icono), debes ejecutar `add_component_property` en el componente principal y luego responder con la siguiente **Estructura Obligatoria**:
-
-### Estructura de Respuesta para **Binding**
-
-1. **Aviso claro:** "He creado la propiedad en el componente principal, pero actualmente no tengo acceso a la herramienta para realizar el **Binding** automáticamente al nodo [Nombre/ID del nodo]."
-2. **Guía paso a paso:**
-   - Selecciona el **nodo hijo específico** (ej. la capa del icono o texto) en el panel izquierdo (**Layers**).
-   - Dirígete al panel derecho (**Design / Properties**).
-   - Localiza la propiedad que requiere el **Binding** (ej. en la sección **Layer** para visibilidad, busca el icono del ojo).
-   - Haz clic en el icono de **Assign variable** o **Apply boolean property** (suele tener forma de diamante con un punto o un icono de enlace).
-   - En el menú desplegable, selecciona la propiedad que acabo de crear para ti (ej. `showArrow`).
-3. **Feedback final:** Sugerir al usuario que pruebe el componente en modo prototipo para verificar el comportamiento.
 
 ---
 

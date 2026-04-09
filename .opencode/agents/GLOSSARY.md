@@ -29,10 +29,10 @@ Este documento define la terminología estándar utilizada por el Director y los
 
 ### 6. Component Property
 **Definición:** Una propiedad declarada en un componente maestro de Figma que permite personalizar instancias sin romper el vínculo con el componente original. Existen exactamente 4 tipos soportados por la API:
-- **VARIANT:** Define estados discretos del componente (ej: State=Default, State=Hover). Agrupa el componente en un Component Set.
 - **BOOLEAN:** Controla la visibilidad de una capa hija (true = visible, false = oculto).
-- **TEXT:** Permite sobrescribir el contenido de texto de una capa hija en la instancia.
+- **TEXT:** Permite sobrescribir el contenido de texto de una capa hija en la instancia. **Importante:** El valor por defecto siempre debe ser un string explicito (ej. `"Label"`).
 - **INSTANCE_SWAP:** Permite reemplazar un componente hijo por otro componente diferente en la instancia.
+- **VARIANT (Conceptual):** Define estados discretos del componente (ej: State=Default, State=Hover). **Nota técnica:** En este sistema, las variantes se crean mediante nomenclatura de nodos maestros y la herramienta `combine_as_variants`, no mediante `add_component_property`.
 - **Términos obsoletos:** "Prop", "Propiedad de variante", "Override".
 - **Uso:** "Añadir una Component Property de tipo BOOLEAN llamada HasIcon al componente Button."
 

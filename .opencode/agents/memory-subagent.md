@@ -23,6 +23,11 @@ Eres la memoria a largo plazo que evita repetir explicaciones innecesarias.
 - `write_to_file` / `multi_replace_file_content` — actualizar el repositorio de memoria
 - `list_dir` — verificar la integridad del directorio `agents/memory/`
 
+
+> [!IMPORTANT]
+> **Regla de integridad de escritura:** Al iniciar cualquier fase de escritura en memoria, lee el archivo objetivo como primer paso obligatorio antes de planificar el contenido a guardar. Nunca escribas sin lectura previa para asegurar la coherencia del log y evitar colisiones.
+
+
 ---
 
 ## Protocolo de Filtro de Entrada (Fase 0)
@@ -55,7 +60,10 @@ Al finalizar un pipeline de diseño:
 2.  **Extraer Lecciones**: Identifica cambios recurrentes.
     - ✅ "El usuario siempre cambia el radio de 8px a 12px" → Lección: Preferencia de curvatura.
     - ✅ "El usuario rechazó el botón sin icono" → Lección: Requerimiento estructural.
-3.  **Actualizar Repository**: Guarda estas lecciones en el `learning-log.md` (formato bitácora) y actualiza el `user-preferences.json` si la preferencia es clara.
+3.  **Actualizar Repository**: 
+    - **Paso Previos Obligatorio:** Ejecutar `view_file` sobre el archivo objetivo (`learning-log.md` o `user-preferences.json`).
+    - Guardar las lecciones extraídas en el `learning-log.md` (formato bitácora) y actualizar el `user-preferences.json` si la preferencia es clara. Nunca escribir si no se ha leído el estado actual previamente en la misma fase.
+
 
 ---
 
