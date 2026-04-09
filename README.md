@@ -83,22 +83,21 @@ El sistema ha evolucionado para incluir funciones de nivel industrial que garant
 
 ```mermaid
 gantt
-    title Comparativa de Velocidad (Fase Técnica)
-    dateFormat  HH:mm
-    axisFormat  %M:%S
+    title Optimización de Workflow: Serial vs. Paralelo
+    dateFormat  m s
+    axisFormat %M:%S
     
-    section FLUJO ANTIGUO (Carga Serial)
-    Diseño Visual          :00:00, 1m
-    Aprobación             :01:00, 1m
-    Creación Tokens        :02:00, 2m
-    Estructura Layout      :04:00, 3m
-    Audit/Corrección Loops :07:00, 4m
-    
-    section NUEVO SISTEMA (Estado JSON + Paralelo)
-    Diseño Propuesta        :00:00, 30s
-    Aprobación              :00:30, 30s
-    Tokens y Layout (PARALELIZADO) :01:00, 2m
-    Auditoría / Auto-Correción :03:00, 1m
+    section ANTIGUO (Legacy)
+    Diseño y Aprobación :active, a1, 0 0, 2m
+    Tokens Manuales     :a2, after a1, 2m
+    Maquetación (Layout):a3, after a2, 3m
+    Loops de Corrección :crit, a4, after a3, 4m
+
+    section NUEVO (JSON Driven)
+    Propuesta Express   :done, b1, 0 0, 1m
+    Tokens & Layout     :active, b2, after b1, 2m
+    Auto-Validación     :b3, after b2, 1m
+
 ```
 
 ---
