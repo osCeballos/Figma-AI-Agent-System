@@ -81,7 +81,7 @@ El sistema ha evolucionado para incluir funciones de nivel industrial que garant
 
 ### ⚡ Eficiencia Operativa (Antes vs. Ahora)
 
-<img width="2656" height="560" alt="image" src="https://github.com/user-attachments/assets/8f3058c2-a4c1-4980-b020-eb09a4f09777" />
+![Frame 26](https://github.com/user-attachments/assets/dd908536-0f77-466d-a179-fac4354ff66f)
 
 ---
 
