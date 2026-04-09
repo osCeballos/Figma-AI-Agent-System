@@ -1,7 +1,8 @@
 # 🎨 Figma AI Agent System
-### Guía de instalación para alumnos
 
 ![Proyecto Cambiar el tamaño de un vídeo](https://github.com/user-attachments/assets/df079c92-b51d-42ca-9935-e51dff5d520c)
+
+### Guía de instalación para alumnos
 
 ![Node](https://img.shields.io/badge/Node.js-≥20-green)
 ![License](https://img.shields.io/badge/Licencia-MIT-blue)
