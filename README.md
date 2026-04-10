@@ -89,24 +89,8 @@ Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes espe
 
 ### Eficiencia operativa: Modelo Antiguo vs. Modelo Actual
 
-<table>
-  <tr>
-    <td width="50%">
-      <img
-        src="https://github.com/user-attachments/assets/08e34da2-61a1-482f-8592-22d0d2161171"
-        alt="Modelo Antiguo: tiempo total de 16 minutos 36 segundos, con AutoLayout como tarea más lenta en 11m 44s"
-        width="100%"
-      />
-    </td>
-    <td width="50%">
-      <img
-        src="https://github.com/user-attachments/assets/42e82dc8-dd4a-415a-b41c-8b92a998283f"
-        alt="Modelo Actual: tiempo total de 4 minutos 31 segundos, una mejora de más del 70% respecto al modelo antiguo"
-        width="100%"
-      />
-    </td>
-  </tr>
-</table>
+<img width="3058" height="977" alt="Frame 26" src="https://github.com/user-attachments/assets/c1ed94e6-8ef1-4e77-832f-fe44385c4a2f" />
+
 
 <br>
 
