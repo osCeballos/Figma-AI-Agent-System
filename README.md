@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Figma AI Agent System
+# Figma AI Agent System
 
 ![Demostración del sistema en acción: un agente de IA recibe una petición en texto y construye automáticamente un diseño en Figma Desktop](https://github.com/user-attachments/assets/df079c92-b51d-42ca-9935-e51dff5d520c)
 
