@@ -1,18 +1,30 @@
+<div align="center">
+
 # 🎨 Figma AI Agent System
 
-![Proyecto Cambiar el tamaño de un vídeo](https://github.com/user-attachments/assets/df079c92-b51d-42ca-9935-e51dff5d520c)
+![Demostración del sistema en acción: un agente de IA recibe una petición en texto y construye automáticamente un diseño en Figma Desktop](https://github.com/user-attachments/assets/df079c92-b51d-42ca-9935-e51dff5d520c)
 
-### Guía de instalación para alumnos
+<br>
 
-![Node](https://img.shields.io/badge/Node.js-≥20-green)
-![License](https://img.shields.io/badge/Licencia-MIT-blue)
-![Figma](https://img.shields.io/badge/Figma-Desktop-purple)
+[![Node.js ≥ 20 requerido](https://img.shields.io/badge/Node.js-≥20-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-3178C6?style=flat-square)](LICENSE)
+[![Compatible con Figma Desktop](https://img.shields.io/badge/Figma-Desktop-F24E1E?style=flat-square&logo=figma&logoColor=white)](https://www.figma.com/downloads/)
+[![Ejecutado con Opencode](https://img.shields.io/badge/Runtime-Opencode-8B5CF6?style=flat-square)](https://opencode.ai/)
 
-> **No necesitas saber programar.** Sigue cada paso en orden y funcionará. Si algo falla, ve directo a [Solución de problemas](#-solución-de-problemas).
+<br>
+
+> Describe un diseño con palabras y un equipo de agentes de IA lo construye en Figma por ti —respetando grids, tipografía, accesibilidad y sistemas de componentes.
+
+<br>
+
+**No necesitas saber programar.** Sigue cada paso en orden y funcionará.  
+Si algo falla, ve directo a [Solución de problemas](#-solución-de-problemas).
+
+</div>
 
 ---
 
-## 📋 Índice
+## 📋 Contenidos
 
 | # | Sección |
 |---|---------|
@@ -24,7 +36,7 @@
 | 6 | [Tu primer diseño](#-tu-primer-diseño) |
 | 7 | [Instalación asistida con Antigravity](#-instalación-asistida-con-google-antigravity) |
 | 8 | [Solución de problemas](#-solución-de-problemas) |
-| 9 | [Botón de inicio rápido](#-botón-de-inicio-rápido) |
+| 9 | [Inicio rápido](#-botón-de-inicio-rápido) |
 | 10 | [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema) |
 | 11 | [Estructura del proyecto](#-estructura-del-proyecto) |
 | 12 | [Créditos](#-créditos) |
@@ -33,7 +45,7 @@
 
 ## 🧠 ¿Para qué sirve?
 
-Imagina que puedes describir un diseño con palabras —igual que le explicarías algo a un compañero— y que un equipo de agentes de inteligencia artificial lo construye en Figma por ti, respetando grids, tipografía, accesibilidad y sistemas de componentes.
+Imagina que puedes describir un diseño con palabras —igual que le explicarías algo a un compañero— y que un equipo de agentes de inteligencia artificial lo construye en Figma por ti.
 
 **Eso es exactamente lo que hace este sistema.**
 
@@ -44,18 +56,18 @@ Imagina que puedes describir un diseño con palabras —igual que le explicaría
 - 🔠 Sistemas de tokens (color, espaciado, tipografía)
 - 🧩 Componentes reutilizables con variantes
 
-> **🔒 Seguridad total:** El sistema siempre te pedirá confirmación antes de tocar tu archivo de Figma. Nunca modificará nada sin que tú lo apruebes.
+> [!NOTE]
+> **🔒 Seguridad total.** El sistema siempre te pedirá confirmación antes de tocar tu archivo de Figma. Nunca modificará nada sin que tú lo apruebes.
 
 ---
 
 ## ⚙️ Cómo funciona
 
-Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agentes especializados** que colaboran entre sí, coordinados por un Director, para asegurar que el resultado sea profesional, accesible y coherente con tu estilo.
+Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes especializados** que colaboran entre sí, coordinados por un Director, para que el resultado sea profesional, accesible y coherente con tu estilo.
 
 ### El flujo de trabajo
 
-<img width="1185" height="1638" alt="Frame 29" src="https://github.com/user-attachments/assets/84bfd6c0-9520-4120-bf5d-77eb5997c83f" />
-
+![Diagrama de flujo del sistema: el usuario escribe una petición, el Director la recibe y coordina los agentes de Memoria, Diseño, Tokens, Layout, Componentes y Auditor, hasta entregar el diseño finalizado en Figma](https://github.com/user-attachments/assets/84bfd6c0-9520-4120-bf5d-77eb5997c83f)
 
 ### Tu equipo de diseño virtual
 
@@ -75,21 +87,29 @@ Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agent
 
 ## 🚀 Capacidades avanzadas
 
-### Eficiencia operativa
+### Eficiencia operativa: Modelo Antiguo vs. Modelo Actual
 
-<img width="3058" height="977" alt="Frame 26" src="https://github.com/user-attachments/assets/3be350ec-3393-4315-a501-9cc1005585f5" />
+![Comparativa de rendimiento entre el modelo antiguo (16 minutos 36 segundos en total, con AutoLayout como tarea más lenta en 11m 44s) y el modelo actual (4 minutos 31 segundos en total, una mejora de más del 70%), mostrando los tiempos individuales de cada agente mediante gráficos de anillo](https://github.com/user-attachments/assets/3be350ec-3393-4315-a501-9cc1005585f5)
 
----
+<br>
 
-### ♿ Auto-corrección de Accesibilidad (WCAG 2.1 AA)
+<details>
+<summary><strong>♿ Auto-corrección de Accesibilidad (WCAG 2.1 AA)</strong></summary>
+
+<br>
 
 El **Auditor Subagent** no solo detecta errores, tiene autoridad para **corregirlos automáticamente**:
 
 - **Cálculo nativo:** usa `calc_wcag_contrast`, una herramienta local ultra-rápida
 - **Resolución inteligente:** si un texto no es legible, aplica el ajuste sugerido al instante
-- **Validación shift-left:** los errores se interceptan desde la fase de tokens, el diseño nace accesible
+- **Validación shift-left:** los errores se interceptan desde la fase de tokens; el diseño nace accesible
 
-### 🔄 Protocolo de Estado Inteligente
+</details>
+
+<details>
+<summary><strong>🔄 Protocolo de Estado Inteligente</strong></summary>
+
+<br>
 
 Latencia y coste de API reducidos mediante gestión de estados centralizada:
 
@@ -97,11 +117,18 @@ Latencia y coste de API reducidos mediante gestión de estados centralizada:
 - **Cero alucinaciones:** acceso directo al estado actual, sin depender de historiales largos
 - **Comunicación por deltas:** los subagentes informan mediante cambios mínimos, optimizando memoria
 
-### 🛡️ Infraestructura reforzada
+</details>
+
+<details>
+<summary><strong>🛡️ Infraestructura reforzada</strong></summary>
+
+<br>
 
 - **Protección contra duplicados:** comprueba si un componente ya existe antes de crearlo
 - **Herramientas MCP nativas:** cálculos locales que no dependen de la nube
 - **Mantenimiento automático:** logs y registros se comprimen solos para evitar degradación
+
+</details>
 
 ---
 
@@ -110,7 +137,7 @@ Latencia y coste de API reducidos mediante gestión de estados centralizada:
 | Programa | Para qué sirve |
 |----------|---------------|
 | **Node.js** | El motor que hace funcionar el sistema en tu ordenador |
-| **Figma Desktop** | La versión de escritorio (la versión web no funciona para esto) |
+| **Figma Desktop** | La versión de escritorio (la versión web no funciona) |
 | **Git** | La herramienta para descargar este proyecto desde internet |
 | **Opencode** | La plataforma donde viven y se ejecutan los agentes de IA |
 
@@ -124,10 +151,10 @@ Durante la instalación usarás la **terminal**: una ventana de texto donde escr
 
 **Cómo abrirla:**
 
-- **Windows:** tecla `Windows` → escribe `PowerShell` → `Enter`
-- **Mac:** `Cmd + Espacio` → escribe `Terminal` → `Enter`
+- **Windows:** <kbd>Win</kbd> → escribe `PowerShell` → <kbd>Enter</kbd>
+- **Mac:** <kbd>Cmd</kbd> + <kbd>Espacio</kbd> → escribe `Terminal` → <kbd>Enter</kbd>
 
-Escribe los comandos exactamente como aparecen en esta guía y pulsa `Enter` tras cada uno. Eso es todo.
+Escribe los comandos exactamente como aparecen en esta guía y pulsa <kbd>Enter</kbd> tras cada uno.
 
 ---
 
@@ -143,7 +170,8 @@ Escribe los comandos exactamente como aparecen en esta guía y pulsa `Enter` tra
 node --version
 ```
 
-✅ Si ves algo como `v20.x.x`, perfecto. Si ves un error, reinstala Node.js.
+> [!TIP]
+> ✅ Si ves algo como `v20.x.x`, perfecto. Si ves un error, reinstala Node.js.
 
 ---
 
@@ -160,7 +188,7 @@ node --version
 ### Paso 3 — Instala Git
 
 - **Windows:** ve a 👉 [git-scm.com/download/win](https://git-scm.com/download/win) e instala con opciones por defecto
-- **Mac:** abre la terminal, escribe `git --version` y pulsa `Enter`. Si no está instalado, el sistema te ofrecerá hacerlo — acepta.
+- **Mac:** abre la terminal, escribe `git --version` y pulsa <kbd>Enter</kbd>. Si no está instalado, el sistema te ofrecerá hacerlo — acepta.
 
 ---
 
@@ -193,7 +221,7 @@ opencode --version
 
 ### Paso 5 — Descarga este proyecto
 
-Ejecuta estos dos comandos **en orden**, pulsando `Enter` tras cada uno:
+Ejecuta estos dos comandos **en orden**:
 
 ```bash
 git clone https://github.com/osCeballos/figma-ai-agent-system.git
@@ -366,23 +394,29 @@ Si tienes acceso a **Google Antigravity**, puede automatizar todo el proceso de 
 > [!IMPORTANT]
 > Antigravity puede automatizar la instalación, pero **tú debes confirmar cada comando**. Verifica rutas, tokens y permisos antes de aprobar cualquier acción.
 
-### Qué necesita Antigravity para empezar
+<details>
+<summary><strong>¿Qué necesita Antigravity para empezar?</strong></summary>
+
+<br>
 
 1. **Este archivo README.md** completo
 2. **Ruta absoluta** donde clonar el proyecto (ej. `C:\Users\TuNombre\Desktop`)
 3. **Sistema operativo** (Windows o Mac)
 4. **Confirmación explícita** de que permites la ejecución de comandos
 
-### Qué verificar tras la ejecución
+**Qué verificar tras la ejecución:**
 
 - [ ] `node --version`, `git --version` y `opencode --version` devuelven versiones válidas
 - [ ] El archivo `opencode.json` existe y apunta a la carpeta correcta
 - [ ] `npm run socket` arranca sin errores
 - [ ] El plugin está importado en Figma Desktop y conecta con el canal
 
-### Prompt para Antigravity
+</details>
 
-Copia y pega este bloque en tu chat con Google Antigravity:
+<details>
+<summary><strong>Prompt listo para copiar y pegar en Antigravity</strong></summary>
+
+<br>
 
 ```text
 Tarea: Montar y comprobar el proyecto "figma-ai-agent-system" en mi equipo.
@@ -421,19 +455,21 @@ Salida esperada:
 Adjunto: README.md del proyecto.
 ```
 
+</details>
+
 ---
 
 ## 🔧 Solución de problemas
 
-| Síntoma | Causa | Solución |
-|---------|-------|----------|
+| Síntoma | Causa probable | Solución |
+|---------|---------------|----------|
 | El plugin no aparece en Figma | Se seleccionó el archivo equivocado | Repite el Paso 9. El archivo correcto está en `src/claude_mcp_plugin/manifest.json` |
 | "Canal no encontrado" | El servidor no está corriendo | Ejecuta `npm run socket` desde la carpeta del proyecto |
 | El plugin no muestra ningún número | El plugin no está abierto | Ve a Plugins → Development → Figma AI Agent y ábrelo |
-| El agente no recuerda tus preferencias | Ruta incorrecta en `opencode.json` | Revisa el Paso 7 y verifica que la ruta apunta exactamente a tu carpeta |
+| El agente no recuerda tus preferencias | Ruta incorrecta en `opencode.json` | Revisa el Paso 7 y verifica que la ruta apunta a tu carpeta |
 | Error al ejecutar `git clone` | Git no está instalado | Instala Git (Paso 3) y reinicia la terminal |
 | Error al ejecutar `npm install` | Node.js no instalado o muy antiguo | Instala Node.js LTS (Paso 1) y reinicia la terminal |
-| "No FIGMA_PAT found" | Falta el token de Figma | Revisa el Paso 7 y asegúrate de que el token está bien pegado |
+| `"No FIGMA_PAT found"` | Falta el token de Figma | Revisa el Paso 7 y asegúrate de que el token está bien pegado |
 | El agente no responde | Opencode no se lanzó desde la carpeta del proyecto | Ejecuta `cd figma-ai-agent-system` y luego `opencode` |
 | La terminal se cierra con error rojo | Falló algún comando | Copia el mensaje de error exacto y consúltalo con tu profesor |
 
@@ -445,6 +481,8 @@ Para no tener que escribir comandos cada vez que quieras trabajar:
 
 <details>
 <summary>🪟 <strong>Windows</strong> — crear <code>iniciar.bat</code></summary>
+
+<br>
 
 1. Dentro de la carpeta del proyecto, clic derecho → **Nuevo → Documento de texto**
 2. Renómbralo como `iniciar.bat` (asegúrate de que termine en `.bat`, no en `.txt`)
@@ -463,7 +501,9 @@ start cmd /k "opencode"
 <details>
 <summary>🍎 <strong>Mac</strong> — crear <code>iniciar.command</code></summary>
 
-1. Abre **TextEdit** en modo texto plano (`Formato > Convertir en texto simple`)
+<br>
+
+1. Abre **TextEdit** en modo texto plano (<kbd>Formato</kbd> → Convertir en texto simple)
 2. Pega este código:
 
 ```bash
@@ -474,7 +514,7 @@ opencode
 ```
 
 3. Guárdalo en la carpeta del proyecto como `iniciar.command`
-4. Abre la Terminal, escribe `chmod +x ` (con espacio al final), arrastra el archivo y pulsa `Enter`
+4. Abre la Terminal, escribe `chmod +x ` (con espacio al final), arrastra el archivo y pulsa <kbd>Enter</kbd>
 5. Desde ahora, **doble clic** en `iniciar.command` para arrancar todo.
 
 </details>
@@ -483,7 +523,7 @@ opencode
 
 ## 🔴 Cómo cerrar el sistema
 
-1. En cada ventana de terminal activa, pulsa `Ctrl + C` para detener los procesos
+1. En cada ventana de terminal activa, pulsa <kbd>Ctrl</kbd> + <kbd>C</kbd> para detener los procesos
 2. Cierra las ventanas de terminal
 3. Cierra el plugin de Figma desde dentro de la aplicación
 
@@ -530,6 +570,6 @@ figma-ai-agent-system/
 
 <div align="center">
 
-**Autor:** Oscar Ceballos Cano · **Año:** 2026
+**Autor:** Oscar Ceballos Cano &nbsp;·&nbsp; **Año:** 2026
 
 </div>
