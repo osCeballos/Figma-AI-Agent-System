@@ -89,8 +89,6 @@ Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes espe
 
 ### Eficiencia operativa: Modelo Antiguo vs. Modelo Actual
 
-### Eficiencia operativa: Modelo Antiguo vs. Modelo Actual
-
 <table>
   <tr>
     <td width="50%">
