@@ -76,7 +76,7 @@ Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agent
 
 ### Eficiencia operativa
 
-![Frame 26](https://github.com/user-attachments/assets/dd908536-0f77-466d-a179-fac4354ff66f)
+![Frame 26](https://github.com/user-attachments/assets/b348e0a7-3384-41b3-8c36-5cfb6ee4ef31)
 
 ---
 
