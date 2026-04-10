@@ -54,7 +54,8 @@ Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agent
 
 ### El flujo de trabajo
 
-![Frame 29](https://github.com/user-attachments/assets/f504298b-b641-4809-a6ff-a172824cd885)
+<img width="1185" height="1638" alt="Frame 29" src="https://github.com/user-attachments/assets/84bfd6c0-9520-4120-bf5d-77eb5997c83f" />
+
 
 ### Tu equipo de diseño virtual
 
@@ -76,7 +77,7 @@ Este sistema no es una simple IA que "dibuja" cosas. Es un **ecosistema de agent
 
 ### Eficiencia operativa
 
-![Frame 26](https://github.com/user-attachments/assets/b348e0a7-3384-41b3-8c36-5cfb6ee4ef31)
+<img width="3058" height="977" alt="Frame 26" src="https://github.com/user-attachments/assets/3be350ec-3393-4315-a501-9cc1005585f5" />
 
 ---
 
