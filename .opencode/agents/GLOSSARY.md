@@ -1,7 +1,7 @@
 ---
 name: GLOSSARY
 description: Glosario Técnico del Figma Agent Ecosystem
-mode: subagent
+mode: all
 ---
 
 # Glosario Técnico — Figma Agent Ecosystem
@@ -32,7 +32,7 @@ Este documento define la terminología estándar utilizada por el Director y los
 - **BOOLEAN:** Controla la visibilidad de una capa hija (true = visible, false = oculto).
 - **TEXT:** Permite sobrescribir el contenido de texto de una capa hija en la instancia. **Importante:** El valor por defecto siempre debe ser un string explicito (ej. `"Label"`).
 - **INSTANCE_SWAP:** Permite reemplazar un componente hijo por otro componente diferente en la instancia.
-- **VARIANT (Conceptual):** Define estados discretos del componente (ej: State=Default, State=Hover). **Nota técnica:** En este sistema, las variantes se crean mediante nomenclatura de nodos maestros y la herramienta `combine_as_variants`, no mediante `add_component_property`.
+- **VARIANT (Conceptual):** Define estados discretos del componente (ej: State=Default, State=Hover). **Nota técnica:** En este sistema, las variantes se crean mediante nomenclatura de nodos maestros y la herramienta `create_component_set`, no mediante `add_component_property` (que no está disponible en el MCP actual).
 - **Términos obsoletos:** "Prop", "Propiedad de variante", "Override".
 - **Uso:** "Añadir una Component Property de tipo BOOLEAN llamada HasIcon al componente Button."
 
@@ -69,4 +69,18 @@ Este documento define la terminología estándar utilizada por el Director y los
 - **Ejemplos:** Confianza (fintech), Energía (fitness), Calma (salud), Innovación (tech).
 
 ### 12. Shift-left WCAG
-**Definición:** Estrategia de diseño que consiste en mover la validación de accesibilidad a las fases más tempranas del proceso (Fase A: Tokens). Esto garantiza que los cimientos del diseño sean accesibles antes de construir layouts o componentes, evitando correcciones costosas en fases finales.
+**Definición:** Estrategia de diseño que consiste en mover la validación de accesibilidad a las fases más tempranas del proceso. En este sistema, la validación se realiza en la **Fase 0.5** (Design) mediante la **Matriz de Contraste**, antes incluso de crear tokens. Esto elimina la necesidad de re-validar colores en fases posteriores.
+
+### 13. Matriz de Contraste
+**Definición:** Tabla pre-computada por el @design-subagent que contiene el ratio WCAG AA para cada par funcional de colores (foreground vs background). Se almacena en `state.design.contrastMatrix` y sirve como fuente de verdad para que los subagentes downstream (tokens, auditor) puedan omitir la re-validación individual de colores. Cada entrada contiene: `{ fg, bg, ratio, passesAA, adjusted, originalRatio }`.
+- **Uso:** Si la matriz existe y un color está cubierto por ella, el tokens-subagent crea la variable sin re-calcular. El auditor solo re-audita colores que NO aparecen en la matriz (delta).
+
+---
+
+## Reglas Globales de Seguridad
+
+### 14. Límite de Entorno (Filesystem)
+**Definición:** Tu acceso al sistema de archivos local está **ESTRICTAMENTE LIMITADO** a la carpeta del proyecto actual (`.opencode/`).
+- **Prohibición Absoluta:** **NUNCA** debes intentar explorar, listar, buscar (`grep_search`, `rg`, `find`), o ejecutar comandos en el disco duro general del usuario (ej: `C:\`, `Documentos`, carpetas de sistema).
+- **Prohibición de Permisos:** **NUNCA** pidas permiso al usuario para acceder a carpetas restringidas fuera de tu entorno de proyecto, sin importar la tarea solicitada.
+- **Herramienta Permitida:** La única herramienta permitida para verificar el Filesystem es `list_dir` con una ruta explícita dentro del proyecto.

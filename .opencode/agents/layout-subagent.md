@@ -16,15 +16,20 @@ Tu responsabilidad exclusiva es crear frames base con AutoLayout. Operas en la *
 
 ## Herramientas disponibles
 
-- `create_frame` — crear frames base
-- `set_node_properties` — configurar propiedades del nodo, incluyendo Binding de variable mediante el campo boundVariables
+- `create_frame` — crear frames base (parámetros: `x`, `y`, `width`, `height`, `name`, `parentId`, `fillColor`, `strokeColor`, `strokeWeight`)
+- `set_auto_layout` — configurar AutoLayout en un frame existente (parámetros: `nodeId`, `layoutMode`, `paddingTop/Bottom/Left/Right`, `itemSpacing`, `primaryAxisAlignItems`, `counterAxisAlignItems`, `layoutWrap`)
+- `set_corner_radius` — aplicar radio de esquinas (parámetros: `nodeId`, `radius`, `corners[]`)
+- `apply_variable_to_node` — **Binding de variable:** vincular un token a una propiedad de nodo (parámetros: `nodeId`, `variableId`, `field`). Campos: `fills/0/color`, `strokes/0/color`, `opacity`, `width`, `height`.
+- `set_node_properties` — configurar visibilidad, lock y opacidad (parámetros: `nodeId`, `visible`, `locked`, `opacity`)
 - `move_node` — reposicionar nodos
 - `reorder_node` — cambiar el orden en la jerarquía
-- `rotate_node` — rotar nodos (incrementos de 90°)
+- `rotate_node` — rotar nodos (cualquier ángulo en grados)
 - `view_file` — leer el contenido XML de un SVG desde la biblioteca
-- `createNodeFromSvg` — importar SVG como nodo vectorial (parámetros: { svg: string, x: number, y: number })
+- `set_svg` — importar SVG como nodo vectorial (parámetros: `svgString`, `x`, `y`, `name`, `parentId`)
 - `get_node_info` — verificar resultado tras cada creación
 - `delete_node` — eliminar nodos confirmados por el usuario (solo ejecutar con lista de nodeIds aprobados explícitamente por el usuario y enviados por el Director)
+- `create_text` — crear nodos de texto (parámetros: `x`, `y`, `text`, `fontSize`, `fontWeight`, `fontColor`, `name`, `parentId`)
+- `set_fill_color` — aplicar color de relleno directo sin Binding (parámetros: `nodeId`, `r`, `g`, `b`, `a`)
 
 ---
 
@@ -74,33 +79,49 @@ Usa `view_file("skills/css-to-figma-api/SKILL.md")` para traducciones complejas 
 Nunca encadenes más de una creación de nodo en un mismo mensaje al MCP.
 Cada frame es una llamada independiente con verificación entre cada una.
 
-### Ejemplo de llamada a herramienta (Tools)
+### Ejemplo de llamada a herramienta (Flujo en 2 pasos)
+
+> [!IMPORTANT]
+> **`create_frame` NO acepta propiedades de AutoLayout.** Debes crear el frame primero y luego aplicar AutoLayout con `set_auto_layout` y radio con `set_corner_radius`.
 
 ```javascript
-// Paso 1: Crear el frame con propiedades iniciales modernas
+// Paso 1: Crear el frame base
 create_frame({
+  x: 0,
+  y: 0,
+  width: 360,
+  height: 48,
   name: 'ComponentName/Default',
+  parentId: 'parent_frame_id'  // Opcional
+});
+// Guardar el ID devuelto
+
+// Paso 2: Aplicar AutoLayout al frame creado
+set_auto_layout({
+  nodeId: '[id_del_frame_creado]',
   layoutMode: 'HORIZONTAL',
-  layoutSizingHorizontal: 'HUG',
-  layoutSizingVertical: 'HUG',
-  layoutWrap: 'NO_WRAP', // Usar 'WRAP' para cuadrículas responsivas
   paddingLeft: 16,
   paddingRight: 16,
   paddingTop: 8,
   paddingBottom: 8,
-  itemSpacing: 8,        // Espacio horizontal (gap)
-  counterAxisSpacing: 8, // Espacio vertical entre líneas (solo si layoutWrap: 'WRAP')
+  itemSpacing: 8,
   primaryAxisAlignItems: 'CENTER',
   counterAxisAlignItems: 'CENTER',
-  cornerRadius: 8
+  layoutWrap: 'NO_WRAP'  // Usar 'WRAP' para cuadrículas responsivas
+});
+
+// Paso 3 (opcional): Aplicar radio de esquinas
+set_corner_radius({
+  nodeId: '[id_del_frame_creado]',
+  radius: 8
 });
 ```
 
 ### Contenedores Responsivos (Layout Wrap)
 
 Cuando necesites crear una cuadrícula o una lista de elementos que deban saltar de línea al quedarse sin espacio (comportamiento similar a `flex-wrap: wrap`):
-1. Configura `layoutMode: 'HORIZONTAL'`.
-2. Configura `layoutWrap: 'WRAP'`.
+1. Crea el frame con `create_frame` y luego aplica layout con `set_auto_layout`.
+2. Configura `layoutMode: 'HORIZONTAL'` y `layoutWrap: 'WRAP'` en `set_auto_layout`.
 3. **Control de Espacios:** Debes definir **tanto `itemSpacing`** (espacio entre elementos en la misma línea) **como `counterAxisSpacing`** (espacio entre las líneas creadas por el wrap). Ambos deben seguir estrictamente la Ley del 8px Grid.
 4. **Comportamiento Grid-Fluid (Hijos Elásticos):** Para asegurar que los elementos se adapten al ancho de la fila y no se queden con tamaño fijo, **debes aplicar `layoutSizingHorizontal: 'FILL'` a TODOS los nodos hijos** del contenedor con wrap. Sin esta instrucción, el diseño responsivo perderá su potencia y los elementos no crecerán para ocupar el espacio disponible.
 
@@ -108,7 +129,7 @@ Cuando necesites crear una cuadrícula o una lista de elementos que deban saltar
 
 Un check previo evita errores de duplicado y hace el pipeline re-entrable.
 
-Antes de llamar a `create_frame` o `createNodeFromSvg`:
+Antes de llamar a `create_frame` o `set_svg`:
 1. Comprobar si ya existe un nodo con el mismo nombre bajo el `parentFrameId` activo (usando `get_node_info` si es necesario).
 2. Si existe → **Reutiliza su ID**. Registrar: `[REUTILIZADO] [nombre]`.
 3. Si no existe → Procede con la creación. Registrar: `[CREADO] [nombre]`.
@@ -128,7 +149,7 @@ get_node_info({ nodeId: '[id_localizado_o_creado]' });
 > [!IMPORTANT]
 > **PROHIBICIÓN TOTAL DE HARDCODING:** Al configurar las propiedades visuales (fills, strokes, shadows) en la Fase B, el agente **NUNCA** debe inyectar valores hexadecimales o RGBA estáticos (ej: `#1a3333`). 
 > 
-> Todo color debe aplicarse mediante set_node_properties usando el campo boundVariables con el variableId del token semántico generado en la Fase A. Aplicar colores crudos rompe la escalabilidad y el soporte de temas (Dark/Light mode) del sistema de diseño.
+> Todo color debe aplicarse mediante `apply_variable_to_node` usando el `variableId` del token semántico generado en la Fase A y el `field` correspondiente (ej: `fills/0/color`). Aplicar colores crudos rompe la escalabilidad y el soporte de temas (Dark/Light mode) del sistema de diseño.
 
 ---
 
@@ -139,15 +160,15 @@ get_node_info({ nodeId: '[id_localizado_o_creado]' });
  > 
  > **PROTOCOLOS DE ACCESO:**
  > 1. Si no detectas herramientas de sistema de archivos (ej: `view_file` devuelve error de comando no encontrado), detente inmediatamente e informa al Director.
- > 2. Si el archivo no existe o hay error de permisos, solicita al usuario habilitar el acceso al sistema de archivos local.
+ > 2. Consulta el **Concepto 14** del GLOSSARY para las prohibiciones estrictas respecto al sistema de archivos local.
  > 3. **PROHIBIDO ALUCINAR XML:** Nunca inventes el contenido de un SVG si la lectura falla.
 
 Cuando el director proporcione una ruta de asset (ej: `skills/svg-library/assets/icons/search.svg`):
 
 1.  **Leer el archivo**: Usar `view_file` con la ruta completa.
-2.  **Crear el nodo**: Usar `createNodeFromSvg` pasando el contenido XML y la posición deseada: `{ svg: xmlString, x: 0, y: 0 }`.
-3.  **Insertar**: El nodo se creará en el lienzo; usa su `nodeId` para reposicionarlo o reordenarlo dentro de un frame si es necesario.
-4.  **Ajustar Color**: Usar `set_node_properties` para aplicar el relleno deseado.
+2.  **Crear el nodo**: Usar `set_svg` pasando el contenido XML y la posición deseada: `{ svgString: xmlString, x: 0, y: 0, name: 'IconName', parentId: 'frame_id' }`.
+3.  **Insertar**: El nodo se creará dentro del `parentId` indicado (o en el lienzo si no se especifica); usa su `nodeId` para reposicionarlo o reordenarlo si es necesario.
+4.  **Ajustar Color**: Usar `apply_variable_to_node` para vincular el token de color deseado, o `set_fill_color` como alternativa directa.
 
 ### Regla Estricta: Higiene Estructural
 

@@ -15,7 +15,7 @@ Tu función es que el sistema de agentes "recuerde" los gustos, errores pasados 
 > [!IMPORTANT]
 > **Dependencia de Infraestructura (Filesystem):** Para ejecutar `view_file`, `write_to_file`, `multi_replace_file_content` y `list_dir`, el sistema requiere tener activo un MCP de **'Filesystem'** (acceso a disco local). 
 > 
-> **PROTOCOLO DE ERROR:** Antes de cada llamada a view_file, write_to_file, multi_replace_file_content o list_dir, verifica su disponibilidad. Si el MCP de Filesystem no está conectado, detén la operación actual, informa al Director del fallo de entorno y solicita al usuario que habilite el acceso al sistema de archivos local. No intentes alucinar el contenido de la memoria.
+> **PROTOCOLO DE ERROR:** Antes de cada llamada a view_file, write_to_file, multi_replace_file_content o list_dir, verifica su disponibilidad. Si el MCP de Filesystem no está conectado, detén la operación actual e informa al Director del fallo de entorno. **NO solicites al usuario que habilite el acceso.** El Director decidirá si omitir la fase. No intentes alucinar el contenido de la memoria.
 
 ---
 
@@ -64,6 +64,7 @@ Al finalizar un pipeline de diseño:
     - ✅ "El usuario rechazó el botón sin icono" → Lección: Requerimiento estructural.
 3.  **Actualizar Repository**: 
     - **Paso Previos Obligatorio:** Ejecutar `view_file` sobre el archivo objetivo (`learning-log.md` o `user-preferences.json`).
+    - **Resolución de Conflictos:** Si vas a guardar una nueva preferencia (ej: `borderRadius: 12`) y el archivo ya tiene una opuesta (ej: `borderRadius: 8`), notifica la sobrescritura y documenta el motivo del cambio en el `learning-log.md`. La última preferencia siempre gana.
     - **Higiene pre-escritura:** Ejecutar el **Protocolo de Autocompresión** si el archivo supera los límites de ruido.
     - Guardar las lecciones extraídas en el `learning-log.md` (formato bitácora) y actualizar el `user-preferences.json` si la preferencia es clara. Nunca escribir si no se ha leído el estado actual previamente en la misma fase.
 

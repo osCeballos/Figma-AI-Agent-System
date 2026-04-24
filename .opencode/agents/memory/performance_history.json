@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-04-09",
+  "project": "Domotica Sustentable",
+  "component": "Climate/Control-Card",
+  "phases": {
+    "phase_0_memory": 3,
+    "phase_0_5_design": 4,
+    "phase_A_tokens": 2,
+    "phase_B_layout": 3,
+    "phase_C_E_components": 2,
+    "phase_audit": 2
+  },
+  "total_time": 16,
+  "tokens_created": 9,
+  "layout_nodes": 15,
+  "component_created": "Climate/Control-Card",
+  "wcag_notes": "temperature/neutral ratio bajo - usar como indicador no texto"
+}

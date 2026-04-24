@@ -10,7 +10,7 @@ Cuando necesites un icono o gráfico vectorial:
 1.  **NO definas el SVG en tu prompt**.
 2.  Consulta `skills/svg-library/registry.json` para encontrar la ruta del activo deseado.
 3.  Usa `view_file` para leer el archivo `.svg` correspondiente.
-4.  Pasa el contenido recuperado a la herramienta `createNodeFromSvg` de Figma.
+4.  Pasa el contenido recuperado a la herramienta `set_svg` de Figma.
 
 ## Herramientas principales
 
@@ -23,7 +23,7 @@ Cuando necesites un icono o gráfico vectorial:
 Agente: Necesito un icono de búsqueda.
 Acción: view_file(RelativePath: "skills/svg-library/assets/icons/search.svg")
 Respuesta: <svg ...>...</svg>
-Acción: createNodeFromSvg({ svg: svgString, x: 0, y: 0 })
+Acción: set_svg({ svgString: svgString, x: 0, y: 0, name: 'search-icon', parentId: 'frame_id' })
 ```
 
 ## Regla de Portabilidad Estricta

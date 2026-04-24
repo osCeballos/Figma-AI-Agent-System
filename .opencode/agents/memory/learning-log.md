@@ -1,8 +1,4 @@
----
-name: learning-log
-description: Registro de aprendizaje del sistema de diseño
-mode: subagent
----
+
 
 # Learning Log: Evolución del Sistema de Diseño
 

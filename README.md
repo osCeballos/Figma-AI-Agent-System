@@ -1,6 +1,6 @@
 <div align="center">
 
-# Figma AI Agent System
+# Figma AI Agent System v2.0
 
 ![Demostración del sistema en acción: un agente de IA recibe una petición en texto y construye automáticamente un diseño en Figma Desktop](https://github.com/user-attachments/assets/df079c92-b51d-42ca-9935-e51dff5d520c)
 
@@ -9,7 +9,7 @@
 [![Node.js ≥ 20 requerido](https://img.shields.io/badge/Node.js-≥20-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-3178C6?style=flat-square)](LICENSE)
 [![Compatible con Figma Desktop](https://img.shields.io/badge/Figma-Desktop-F24E1E?style=flat-square&logo=figma&logoColor=white)](https://www.figma.com/downloads/)
-[![Ejecutado con Opencode](https://img.shields.io/badge/Runtime-Opencode-8B5CF6?style=flat-square)](https://opencode.ai/)
+[![Powered by Opencode](https://img.shields.io/badge/Powered_by-Opencode-8B5CF6?style=flat-square)](https://opencode.ai/)
 
 <br>
 
@@ -26,20 +26,20 @@ Si algo falla, ve directo a [Solución de problemas](#-solución-de-problemas).
 
 ## 📋 Contenidos
 
-| # | Sección |
-|---|---------|
-| 1 | [¿Para qué sirve?](#-para-qué-sirve) |
-| 2 | [Cómo funciona](#-cómo-funciona) |
-| 3 | [Capacidades avanzadas](#-capacidades-avanzadas) |
-| 4 | [Lo que vas a instalar](#-lo-que-vas-a-instalar) |
-| 5 | [Instalación paso a paso](#-instalación-paso-a-paso) |
-| 6 | [Tu primer diseño](#-tu-primer-diseño) |
-| 7 | [Instalación asistida con Antigravity](#-instalación-asistida-con-google-antigravity) |
-| 8 | [Solución de problemas](#-solución-de-problemas) |
-| 9 | [Inicio rápido](#-botón-de-inicio-rápido) |
-| 10 | [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema) |
-| 11 | [Estructura del proyecto](#-estructura-del-proyecto) |
-| 12 | [Créditos](#-créditos) |
+| #   | Sección                                                                        |
+| --- | ------------------------------------------------------------------------------ |
+| 1   | [¿Para qué sirve?](#-para-qué-sirve)                                           |
+| 2   | [Cómo funciona](#-cómo-funciona)                                               |
+| 3   | [Capacidades avanzadas](#-capacidades-avanzadas)                               |
+| 4   | [Lo que vas a instalar](#-lo-que-vas-a-instalar)                               |
+| 5   | [Instalación paso a paso](#-instalación-paso-a-paso)                           |
+| 6   | [Tu primer diseño](#-tu-primer-diseño)                                         |
+| 7   | [Instalación asistida con Antigravity](#-instalación-asistida-con-antigravity) |
+| 8   | [Solución de problemas](#-solución-de-problemas)                               |
+| 9   | [Inicio rápido](#-botón-de-inicio-rápido)                                      |
+| 10  | [Cómo cerrar el sistema](#-cómo-cerrar-el-sistema)                             |
+| 11  | [Estructura del proyecto](#-estructura-del-proyecto)                           |
+| 12  | [Créditos](#-créditos)                                                         |
 
 ---
 
@@ -71,14 +71,15 @@ Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes espe
 
 ### Tu equipo de diseño virtual
 
-| Agente | Rol | Responsabilidad |
-|--------|-----|-----------------|
-| 🎬 **figma-director** | Jefe de proyectos | Escucha tu petición, decide los pasos y reparte el trabajo |
-| 🧠 **memory-subagent** | Historiador | Recuerda tu estilo, colores preferidos y decisiones pasadas |
-| 🎨 **design-subagent** | Director creativo | Decide paleta, tipografía y look & feel con teoría del diseño real |
-| 📐 **layout-subagent** | Arquitecto | Gestiona la estructura, grids y AutoLayout |
-| 🧱 **components-subagent** | Constructor | Crea botones, tarjetas y elementos con variantes |
-| ✅ **auditor-subagent** | Control de calidad | Verifica contrastes WCAG y nombres de capas |
+| Agente                     | Rol                | Responsabilidad                                                    |
+| -------------------------- | ------------------ | ------------------------------------------------------------------ |
+| 🎬 **figma-director**      | Jefe de proyectos  | Escucha tu petición, decide los pasos y reparte el trabajo         |
+| 🧠 **memory-subagent**     | Historiador        | Recuerda tu estilo, colores preferidos y decisiones pasadas        |
+| 🎨 **design-subagent**     | Director creativo  | Decide paleta, tipografía y look & feel con teoría del diseño real |
+| 🔠 **tokens-subagent**     | Sistema de diseño  | Genera y gestiona los tokens de color, espaciado y tipografía      |
+| 📐 **layout-subagent**     | Arquitecto         | Gestiona la estructura, grids y AutoLayout                         |
+| 🧱 **components-subagent** | Constructor        | Crea botones, tarjetas y elementos con variantes                   |
+| ✅ **auditor-subagent**    | Control de calidad | Verifica contrastes WCAG y nombres de capas                        |
 
 > [!TIP]
 > **Tú tienes la última palabra.** El sistema no comenzará a construir hasta que apruebes la propuesta visual del agente de Diseño.
@@ -90,7 +91,6 @@ Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes espe
 ### Eficiencia operativa: Modelo Antiguo vs. Modelo Actual
 
 <img width="3058" height="977" alt="Frame 26" src="https://github.com/user-attachments/assets/c1ed94e6-8ef1-4e77-832f-fe44385c4a2f" />
-
 
 <br>
 
@@ -121,13 +121,16 @@ Latencia y coste de API reducidos mediante gestión de estados centralizada:
 </details>
 
 <details>
-<summary><strong>🛡️ Infraestructura reforzada</strong></summary>
+<summary><strong>🛡️ Infraestructura reforzada (Arquitectura V2)</strong></summary>
 
 <br>
 
-- **Protección contra duplicados:** comprueba si un componente ya existe antes de crearlo
-- **Herramientas MCP nativas:** cálculos locales que no dependen de la nube
-- **Mantenimiento automático:** logs y registros se comprimen solos para evitar degradación
+- **Orquestación con Chain-of-Thought:** El Director razona explícitamente cada paso antes de delegar, evitando bloqueos si el usuario no responde.
+- **Memoria con Resolución de Conflictos:** El sistema detecta y resuelve contradicciones en tus preferencias a lo largo del tiempo (ej. si cambias de estilo).
+- **Single Source of Truth:** Glosario y reglas de seguridad (Filesystem) centralizadas para evitar alucinaciones y ahorrar tokens.
+- **Protección contra duplicados:** comprueba si un componente ya existe antes de crearlo.
+- **Herramientas MCP nativas:** cálculos locales que no dependen de la nube.
+- **Mantenimiento automático:** logs y registros se comprimen solos para evitar degradación.
 
 </details>
 
@@ -135,12 +138,15 @@ Latencia y coste de API reducidos mediante gestión de estados centralizada:
 
 ## 📦 Lo que vas a instalar
 
-| Programa | Para qué sirve |
-|----------|---------------|
-| **Node.js** | El motor que hace funcionar el sistema en tu ordenador |
-| **Figma Desktop** | La versión de escritorio (la versión web no funciona) |
-| **Git** | La herramienta para descargar este proyecto desde internet |
-| **Opencode** | La plataforma donde viven y se ejecutan los agentes de IA |
+| Programa          | Para qué sirve                                             |
+| ----------------- | ---------------------------------------------------------- |
+| **Node.js**       | El motor que hace funcionar el sistema en tu ordenador     |
+| **Figma Desktop** | La versión de escritorio (la versión web no funciona)      |
+| **Git**           | La herramienta para descargar este proyecto desde internet |
+| **Opencode**      | La plataforma donde viven y se ejecutan los agentes de IA  |
+
+> [!IMPORTANT]
+> También necesitarás una **cuenta activa de Figma** y una **API key del proveedor de IA** que uses con Opencode (por defecto, Anthropic). Si aún no tienes una, créala en 👉 [console.anthropic.com](https://console.anthropic.com/) antes de empezar.
 
 ---
 
@@ -217,6 +223,9 @@ Verifica que se instaló correctamente:
 ```bash
 opencode --version
 ```
+
+> [!IMPORTANT]
+> Opencode necesita una **API key** para conectarse al modelo de IA. La primera vez que lo abras te pedirá que elijas proveedor e introduzcas tu clave. Si usas Anthropic (recomendado), genera tu API key en 👉 [console.anthropic.com](https://console.anthropic.com/).
 
 ---
 
@@ -356,19 +365,19 @@ src/claude_mcp_plugin/manifest.json
 opencode
 ```
 
-6. Escribe en el chat:
-
-```
-Conecta con Figma, canal [el número que ves en el plugin]
-```
-
 **Si el agente confirma la conexión... ¡todo está listo! 🎉**
 
 ---
 
 ## 💬 Tu primer diseño
 
-Una vez conectado, prueba con alguno de estos ejemplos:
+Una vez conectado, escribe en el chat de Opencode el número de canal que ves en el plugin:
+
+```
+Conecta con Figma, canal [el número que ves en el plugin]
+```
+
+Después, prueba con alguno de estos ejemplos:
 
 ```
 Crea una tarjeta de producto para una tienda de ropa.
@@ -388,9 +397,9 @@ El agente te mostrará una propuesta de estilo y esperará tu aprobación antes 
 
 ---
 
-## 🤖 Instalación asistida con Google Antigravity
+## 🤖 Instalación asistida con Antigravity
 
-Si tienes acceso a **Google Antigravity**, puede automatizar todo el proceso de configuración mientras tú supervisas seguridad y permisos.
+Si tienes acceso a **Antigravity**, puede automatizar todo el proceso de configuración mientras tú supervisas seguridad y permisos.
 
 > [!IMPORTANT]
 > Antigravity puede automatizar la instalación, pero **tú debes confirmar cada comando**. Verifica rutas, tokens y permisos antes de aprobar cualquier acción.
@@ -462,17 +471,19 @@ Adjunto: README.md del proyecto.
 
 ## 🔧 Solución de problemas
 
-| Síntoma | Causa probable | Solución |
-|---------|---------------|----------|
-| El plugin no aparece en Figma | Se seleccionó el archivo equivocado | Repite el Paso 9. El archivo correcto está en `src/claude_mcp_plugin/manifest.json` |
-| "Canal no encontrado" | El servidor no está corriendo | Ejecuta `npm run socket` desde la carpeta del proyecto |
-| El plugin no muestra ningún número | El plugin no está abierto | Ve a Plugins → Development → Figma AI Agent y ábrelo |
-| El agente no recuerda tus preferencias | Ruta incorrecta en `opencode.json` | Revisa el Paso 7 y verifica que la ruta apunta a tu carpeta |
-| Error al ejecutar `git clone` | Git no está instalado | Instala Git (Paso 3) y reinicia la terminal |
-| Error al ejecutar `npm install` | Node.js no instalado o muy antiguo | Instala Node.js LTS (Paso 1) y reinicia la terminal |
-| `"No FIGMA_PAT found"` | Falta el token de Figma | Revisa el Paso 7 y asegúrate de que el token está bien pegado |
-| El agente no responde | Opencode no se lanzó desde la carpeta del proyecto | Ejecuta `cd figma-ai-agent-system` y luego `opencode` |
-| La terminal se cierra con error rojo | Falló algún comando | Copia el mensaje de error exacto y consúltalo con tu profesor |
+| Síntoma                                | Causa probable                                     | Solución                                                                            |
+| -------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| El plugin no aparece en Figma          | Se seleccionó el archivo equivocado                | Repite el Paso 9. El archivo correcto está en `src/claude_mcp_plugin/manifest.json` |
+| "Canal no encontrado"                  | El servidor no está corriendo                      | Ejecuta `npm run socket` desde la carpeta del proyecto                              |
+| El plugin no muestra ningún número     | El plugin no está abierto                          | Ve a Plugins → Development → Figma AI Agent y ábrelo                                |
+| El agente no recuerda tus preferencias | Ruta incorrecta en `opencode.json`                 | Revisa el Paso 7 y verifica que la ruta apunta a tu carpeta                         |
+| Error al ejecutar `git clone`          | Git no está instalado                              | Instala Git (Paso 3) y reinicia la terminal                                         |
+| Error al ejecutar `npm install`        | Node.js no instalado o muy antiguo                 | Instala Node.js LTS (Paso 1) y reinicia la terminal                                 |
+| `"No FIGMA_PAT found"`                 | Falta el token de Figma                            | Revisa el Paso 7 y asegúrate de que el token está bien pegado                       |
+| El agente no responde                  | Opencode no se lanzó desde la carpeta del proyecto | Ejecuta `cd figma-ai-agent-system` y luego `opencode`                               |
+| La terminal se cierra con error rojo   | Falló algún comando                                | Copia el mensaje de error exacto y abre un [issue en GitHub][issues]                |
+
+[issues]: https://github.com/osCeballos/figma-ai-agent-system/issues
 
 ---
 
@@ -539,9 +550,9 @@ figma-ai-agent-system/
 │   ├── agents/                   ← Los 7 agentes de IA
 │   │   ├── figma-director.md
 │   │   ├── design-subagent.md
+│   │   ├── tokens-subagent.md
 │   │   ├── layout-subagent.md
 │   │   ├── components-subagent.md
-│   │   ├── tokens-subagent.md
 │   │   ├── auditor-subagent.md
 │   │   ├── memory-subagent.md
 │   │   └── memory/               ← Aquí se guardan tus preferencias

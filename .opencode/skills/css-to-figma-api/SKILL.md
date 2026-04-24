@@ -20,54 +20,62 @@ skill({ name: "css-to-figma-api" })
 
 ## Tabla de traducción completa (Modern AutoLayout)
 
+> [!IMPORTANT]
+> **Mapeo de herramientas MCP:** Esta tabla traduce CSS → propiedades de la API de Figma. Pero **no todas las propiedades se configuran con la misma herramienta MCP:**
+> - **`set_auto_layout`** acepta: `layoutMode`, `paddingTop/Bottom/Left/Right`, `itemSpacing`, `primaryAxisAlignItems`, `counterAxisAlignItems`, `layoutWrap`.
+> - **`set_node_properties`** acepta: `layoutSizingHorizontal`, `layoutSizingVertical`, `counterAxisSpacing`, `layoutAlign`, `layoutPositioning`, `minWidth`, `maxWidth`, `visible`, `locked`, `opacity`.
+> - **`set_corner_radius`** acepta: `radius`, `corners[]`.
+>
+> Si una propiedad no está disponible en ninguna de estas herramientas, se marca con ⚠️ en la tabla.
+
 ### Sizing (Dimensionamiento Responsivo)
 
-| CSS | Figma API | Notas |
-|-----|-----------|-------|
-| `width: fit-content` | `layoutSizingHorizontal: 'HUG'` | El frame se ajusta al contenido horizontalmente |
-| `height: fit-content` | `layoutSizingVertical: 'HUG'` | El frame se ajusta al contenido verticalmente |
-| `width: [valor fijo]` | `layoutSizingHorizontal: 'FIXED'` + `width: valor` | Tamaño horizontal bloqueado |
-| `height: [valor fijo]` | `layoutSizingVertical: 'FIXED'` + `height: valor` | Tamaño vertical bloqueado |
-| `width: 100%` | `layoutSizingHorizontal: 'FILL'` | Llena el espacio del padre (Flex: 1 en el eje X) |
-| `height: 100%` | `layoutSizingVertical: 'FILL'` | Llena el espacio del padre (Flex: 1 en el eje Y) |
-| `flex-grow: 1` | Depende del eje: `layoutSizing(H|V): 'FILL'` | |
-| `min-width: valor` | `minWidth: valor` | |
-| `max-width: valor` | `maxWidth: valor` | |
+| CSS | Figma API | Herramienta MCP | Notas |
+|-----|-----------|----------------|-------|
+| `width: fit-content` | `layoutSizingHorizontal: 'HUG'` | `set_node_properties` | El frame se ajusta al contenido horizontalmente |
+| `height: fit-content` | `layoutSizingVertical: 'HUG'` | `set_node_properties` | El frame se ajusta al contenido verticalmente |
+| `width: [valor fijo]` | `layoutSizingHorizontal: 'FIXED'` + `width: valor` | `set_node_properties` | Tamaño horizontal bloqueado |
+| `height: [valor fijo]` | `layoutSizingVertical: 'FIXED'` + `height: valor` | `set_node_properties` | Tamaño vertical bloqueado |
+| `width: 100%` | `layoutSizingHorizontal: 'FILL'` | `set_node_properties` | Llena el espacio del padre |
+| `height: 100%` | `layoutSizingVertical: 'FILL'` | `set_node_properties` | Llena el espacio del padre |
+| `flex-grow: 1` | Depende del eje: `layoutSizing(H|V): 'FILL'` | `set_node_properties` | |
+| `min-width: valor` | `minWidth: valor` | `set_node_properties` | |
+| `max-width: valor` | `maxWidth: valor` | `set_node_properties` | |
 
 ### Flexbox — Dirección y distribución
 
-| CSS | Figma API |
-|-----|-----------|
-| `flex-direction: row` | `layoutMode: 'HORIZONTAL'` |
-| `flex-direction: column` | `layoutMode: 'VERTICAL'` |
-| `flex-wrap: wrap` | `layoutWrap: 'WRAP'` |
-| `flex-wrap: nowrap` | `layoutWrap: 'NO_WRAP'` |
-| `gap: valor` | `itemSpacing: valor` |
-| `column-gap: valor` | `itemSpacing: valor` (eje principal HORIZONTAL) |
-| `row-gap: valor` | `counterAxisSpacing: valor` |
+| CSS | Figma API | Herramienta MCP |
+|-----|-----------|-----------------|
+| `flex-direction: row` | `layoutMode: 'HORIZONTAL'` | `set_auto_layout` |
+| `flex-direction: column` | `layoutMode: 'VERTICAL'` | `set_auto_layout` |
+| `flex-wrap: wrap` | `layoutWrap: 'WRAP'` | `set_auto_layout` |
+| `flex-wrap: nowrap` | `layoutWrap: 'NO_WRAP'` | `set_auto_layout` |
+| `gap: valor` | `itemSpacing: valor` | `set_auto_layout` |
+| `column-gap: valor` | `itemSpacing: valor` (eje principal HORIZONTAL) | `set_auto_layout` |
+| `row-gap: valor` | `counterAxisSpacing: valor` | `set_node_properties` |
 
 ### Flexbox — Alineación del contenedor
 
-| CSS | Figma API |
-|-----|-----------|
-| `justify-content: flex-start` | `primaryAxisAlignItems: 'MIN'` |
-| `justify-content: center` | `primaryAxisAlignItems: 'CENTER'` |
-| `justify-content: flex-end` | `primaryAxisAlignItems: 'MAX'` |
-| `justify-content: space-between` | `primaryAxisAlignItems: 'SPACE_BETWEEN'` |
-| `align-items: flex-start` | `counterAxisAlignItems: 'MIN'` |
-| `align-items: center` | `counterAxisAlignItems: 'CENTER'` |
-| `align-items: flex-end` | `counterAxisAlignItems: 'MAX'` |
-| `align-items: baseline` | `counterAxisAlignItems: 'BASELINE'` |
+| CSS | Figma API | Herramienta MCP |
+|-----|-----------|-----------------|
+| `justify-content: flex-start` | `primaryAxisAlignItems: 'MIN'` | `set_auto_layout` |
+| `justify-content: center` | `primaryAxisAlignItems: 'CENTER'` | `set_auto_layout` |
+| `justify-content: flex-end` | `primaryAxisAlignItems: 'MAX'` | `set_auto_layout` |
+| `justify-content: space-between` | `primaryAxisAlignItems: 'SPACE_BETWEEN'` | `set_auto_layout` |
+| `align-items: flex-start` | `counterAxisAlignItems: 'MIN'` | `set_auto_layout` |
+| `align-items: center` | `counterAxisAlignItems: 'CENTER'` | `set_auto_layout` |
+| `align-items: flex-end` | `counterAxisAlignItems: 'MAX'` | `set_auto_layout` |
+| `align-items: baseline` | `counterAxisAlignItems: 'BASELINE'` | ⚠️ No disponible en `set_auto_layout` (solo MIN/CENTER/MAX) |
 
 ### Flexbox — Propiedades de hijos
 
-| CSS | Figma API | Aplicar en el nodo hijo |
-|-----|-----------|------------------------|
-| `align-self: stretch` | Si eje secundario: `layoutSizing(H|V): 'FILL'` | Sí |
-| `align-self: center` | `layoutAlign: 'CENTER'` | Sí |
-| `align-self: flex-start` | `layoutAlign: 'MIN'` | Sí |
-| `align-self: flex-end` | `layoutAlign: 'MAX'` | Sí |
-| `position: absolute` | `layoutPositioning: 'ABSOLUTE'` | Sí |
+| CSS | Figma API | Herramienta MCP | Aplicar en el nodo hijo |
+|-----|-----------|-----------------|------------------------|
+| `align-self: stretch` | Si eje secundario: `layoutSizing(H|V): 'FILL'` | `set_node_properties` | Sí |
+| `align-self: center` | `layoutAlign: 'CENTER'` | `set_node_properties` | Sí |
+| `align-self: flex-start` | `layoutAlign: 'MIN'` | `set_node_properties` | Sí |
+| `align-self: flex-end` | `layoutAlign: 'MAX'` | `set_node_properties` | Sí |
+| `position: absolute` | `layoutPositioning: 'ABSOLUTE'` | `set_node_properties` | Sí |
 
 ---
 
