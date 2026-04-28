@@ -10,6 +10,7 @@
 [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-3178C6?style=flat-square)](LICENSE)
 [![Compatible con Figma Desktop](https://img.shields.io/badge/Figma-Desktop-F24E1E?style=flat-square&logo=figma&logoColor=white)](https://www.figma.com/downloads/)
 [![Powered by Opencode](https://img.shields.io/badge/Powered_by-Opencode-8B5CF6?style=flat-square)](https://opencode.ai/)
+[![Estado del sistema](https://img.shields.io/badge/Sistema-Operatividad_Determinista-22C55E?style=flat-square)](./CHANGELOG.md)
 
 <br>
 
@@ -79,7 +80,7 @@ Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes espe
 | 🔠 **tokens-subagent**     | Sistema de diseño  | Genera y gestiona los tokens de color, espaciado y tipografía      |
 | 📐 **layout-subagent**     | Arquitecto         | Gestiona la estructura, grids y AutoLayout                         |
 | 🧱 **components-subagent** | Constructor        | Crea botones, tarjetas y elementos con variantes                   |
-| ✅ **auditor-subagent**    | Control de calidad | Verifica contrastes WCAG y nombres de capas                        |
+| ✅ **auditor-subagent**    | Control de calidad | Verifica contrastes WCAG y coherencia del sistema de diseño        |
 
 > [!TIP]
 > **Tú tienes la última palabra.** El sistema no comenzará a construir hasta que apruebes la propuesta visual del agente de Diseño.
@@ -101,9 +102,10 @@ Este sistema no es una IA que "dibuja" cosas. Es un **ecosistema de agentes espe
 
 El **Auditor Subagent** no solo detecta errores, tiene autoridad para **corregirlos automáticamente**:
 
-- **Cálculo nativo:** usa `calc_wcag_contrast`, una herramienta local ultra-rápida
-- **Resolución inteligente:** si un texto no es legible, aplica el ajuste sugerido al instante
-- **Validación shift-left:** los errores se interceptan desde la fase de tokens; el diseño nace accesible
+- **Validación shift-left:** los errores se interceptan desde la Fase 1 (Diseño) mediante la Matriz de Contraste, antes de crear ningún token. El diseño nace accesible.
+- **Cálculo por algoritmo:** el ratio WCAG se calcula con la fórmula de luminancia relativa (L = 0.2126·R + 0.7152·G + 0.0722·B) aplicada directamente por el agente, sin depender de herramientas externas.
+- **Resolución inteligente:** si un texto no alcanza el ratio 4.5:1 requerido, el agente busca el stop más cercano en la rampa de color antes de ajustar por luminancia.
+- **Auditoría por delta:** en la Fase 4, el auditor solo re-verifica los colores no cubiertos por la Matriz de Contraste pre-validada, evitando trabajo redundante.
 
 </details>
 
@@ -114,9 +116,10 @@ El **Auditor Subagent** no solo detecta errores, tiene autoridad para **corregir
 
 Latencia y coste de API reducidos mediante gestión de estados centralizada:
 
-- **Objeto de estado único:** los agentes comparten una fuente de verdad en JSON consolidado
-- **Cero alucinaciones:** acceso directo al estado actual, sin depender de historiales largos
-- **Comunicación por deltas:** los subagentes informan mediante cambios mínimos, optimizando memoria
+- **Objeto de estado único:** los agentes comparten una fuente de verdad en JSON consolidado.
+- **Cero alucinaciones:** acceso directo al estado actual, sin depender de historiales largos.
+- **Comunicación por deltas:** los subagentes informan mediante cambios mínimos, optimizando memoria.
+- **Checkpoints transaccionales:** si el pipeline se interrumpe, el sistema reanuda exactamente desde la última fase completada con éxito, sin necesidad de repetir pasos.
 
 </details>
 
@@ -126,10 +129,10 @@ Latencia y coste de API reducidos mediante gestión de estados centralizada:
 <br>
 
 - **Orquestación con Chain-of-Thought:** El Director razona explícitamente cada paso antes de delegar, evitando bloqueos si el usuario no responde.
+- **Flujo secuencial garantizado:** Los tokens (Fase 2A) se crean antes que el layout (Fase 2B). Esto asegura que todos los bindings de variable están disponibles cuando el arquitecto los necesita, eliminando la condición de carrera de versiones anteriores.
 - **Memoria con Resolución de Conflictos:** El sistema detecta y resuelve contradicciones en tus preferencias a lo largo del tiempo (ej. si cambias de estilo).
-- **Single Source of Truth:** Glosario y reglas de seguridad (Filesystem) centralizadas para evitar alucinaciones y ahorrar tokens.
+- **Single Source of Truth:** Glosario y reglas de seguridad centralizadas para evitar alucinaciones y ahorrar tokens.
 - **Protección contra duplicados:** comprueba si un componente ya existe antes de crearlo.
-- **Herramientas MCP nativas:** cálculos locales que no dependen de la nube.
 - **Mantenimiento automático:** logs y registros se comprimen solos para evitar degradación.
 
 </details>
@@ -321,6 +324,9 @@ Puede tardar entre 1 y 3 minutos. Cuando vuelva el cursor, continúa.
    - **Mac:** abre el Finder → icono de casa (carpeta de inicio)
 5. Guarda el archivo
 
+> [!WARNING]
+> El archivo `opencode.json` solo debe contener los servidores `figma` y `filesystem`. No añadas ningún otro servidor MCP. El validador de `DESIGN.md` se ejecuta internamente como comando de terminal.
+
 ---
 
 ### Paso 8 — Arranca el servidor de conexión
@@ -445,7 +451,8 @@ Objetivos:
 2. Clonar https://github.com/osCeballos/figma-ai-agent-system.git en la ruta indicada.
 3. Ejecutar `npm install` dentro de la carpeta del proyecto.
 4. Crear `opencode.json` con la configuración correcta para mi SO, sustituyendo
-   `TuNombre` por mi usuario real.
+   `TuNombre` por mi usuario real. Solo incluir los servidores MCP "figma" y
+   "filesystem". No añadir ningún CLI externo como servidor MCP.
 5. Arrancar el servidor con `npm run socket` y verificar que está escuchando.
 6. Guiarme para importar el plugin en Figma Desktop.
 7. Abrir Opencode y ayudarme a conectar con el canal del plugin.
@@ -481,6 +488,7 @@ Adjunto: README.md del proyecto.
 | Error al ejecutar `npm install`        | Node.js no instalado o muy antiguo                 | Instala Node.js LTS (Paso 1) y reinicia la terminal                                 |
 | `"No FIGMA_PAT found"`                 | Falta el token de Figma                            | Revisa el Paso 7 y asegúrate de que el token está bien pegado                       |
 | El agente no responde                  | Opencode no se lanzó desde la carpeta del proyecto | Ejecuta `cd figma-ai-agent-system` y luego `opencode`                               |
+| Los tokens se crean sin color aplicado | `opencode.json` tiene servidores MCP incorrectos   | Verifica que solo existen los servidores `figma` y `filesystem`                     |
 | La terminal se cierra con error rojo   | Falló algún comando                                | Copia el mensaje de error exacto y abre un [issue en GitHub][issues]                |
 
 [issues]: https://github.com/osCeballos/figma-ai-agent-system/issues
@@ -547,35 +555,50 @@ opencode
 figma-ai-agent-system/
 │
 ├── .opencode/
-│   ├── agents/                   ← Los 7 agentes de IA
-│   │   ├── figma-director.md
-│   │   ├── design-subagent.md
-│   │   ├── tokens-subagent.md
-│   │   ├── layout-subagent.md
-│   │   ├── components-subagent.md
-│   │   ├── auditor-subagent.md
-│   │   ├── memory-subagent.md
-│   │   └── memory/               ← Aquí se guardan tus preferencias
+│   ├── figma-director.md             ← Orquestador central
+│   ├── memory-subagent.md            ← Fase 0: Contexto evolutivo
+│   ├── design-subagent.md            ← Fase 1: Criterio visual
+│   ├── tokens-subagent.md            ← Fase 2A: Variables y tokens
+│   ├── layout-subagent.md            ← Fase 2B: Frames y AutoLayout
+│   ├── components-subagent.md        ← Fase 3: Componentización
+│   ├── auditor-subagent.md           ← Fase 4: Auditoría WCAG
+│   ├── extract-subagent.md           ← Auxiliar: extracción de design system
+│   ├── validator-subagent.md         ← Auxiliar: validación de DESIGN.md
+│   ├── GLOSSARY.md                   ← Glosario técnico oficial del sistema
 │   │
-│   └── skills/                   ← Conocimiento especializado de los agentes
-│       ├── design-patterns/
-│       ├── css-to-figma-api/
-│       ├── figma-grid-calculus/
-│       ├── svg-library/
-│       └── wcag-calculator/
+│   └── skills/
+│       ├── css-to-figma-api/         ← Mapeo completo CSS → API de Figma
+│       ├── wcag-calculator/          ← Algoritmo WCAG 2.1 (fórmula de luminancia)
+│       ├── figma-grid-calculus/      ← Validador de múltiplos de 8px
+│       ├── design-system-reference/  ← Reglas globales compartidas por todos los agentes
+│       ├── design-patterns/          ← Patrones UI: navigation, forms, overlays, feedback, content
+│       └── svg-library/
+│           ├── registry.json         ← Índice de los 22 iconos disponibles
+│           └── assets/icons/         ← Archivos SVG (24×24, currentColor)
+│
+├── agents/memory/
+│   ├── user-preferences.json         ← Preferencias del usuario entre sesiones
+│   ├── learning-log.md               ← Bitácora de aprendizaje continuo
+│   └── performance_history.json      ← Historial de sesiones
 │
 ├── src/
 │   └── claude_mcp_plugin/
-│       └── manifest.json         ← El "DNI" del plugin para Figma
+│       └── manifest.json             ← Plugin de conexión con Figma Desktop
 │
-└── opencode.json                 ← Tu archivo de configuración (lo creas en el Paso 7)
+├── DESIGN.md                         ← Design system extraído (generado automáticamente)
+├── opencode.json                     ← Tu archivo de configuración (lo creas en el Paso 7)
+└── README.md
 ```
+
+> [!NOTE]
+> **Sobre `DESIGN.md`:** Este archivo se genera y actualiza automáticamente al inicio de cada sesión. No lo edites a mano. Si quieres regenerarlo, dile al agente: _"Actualiza el sistema de diseño"_.
 
 ---
 
 ## 🙏 Créditos
 
 - **Plugin de conexión con Figma:** [claude-talk-to-figma-mcp](https://github.com/arinspunk/claude-talk-to-figma-mcp) por arinspunk
+- **Auditoría de arquitectura v2.0:** Claude (Anthropic) + Antigravity (Google) — 10 hallazgos resueltos, sistema en estado de Operatividad Determinista
 - **Licencia:** MIT — puedes usar, modificar y distribuir libremente
 
 ---
