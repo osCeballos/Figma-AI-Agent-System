@@ -10,9 +10,9 @@
     "defaultGap": 8,
     "fontFamily": "Inter",
     "colorPalette": {
-      "brandPrimary": null,
-      "textHighContrast": null,
-      "backgroundMain": null
+      "brand-primary": null,
+      "text-primary": null,
+      "background": null
     }
   },
   "successfulPatterns": [

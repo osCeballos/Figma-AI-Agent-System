@@ -38,7 +38,7 @@ Antes de que el Director inicie la Fase A:
 
 1.  **Analizar el Prompt**: Busca palabras clave sobre diseño (estilo, colores, formas, componentes).
 2.  **Consultar Memoria**: Lee `user-preferences.json` para buscar configuraciones guardadas (ej: "El usuario prefiere Inter como fuente").
-3.  **Detección de Paleta Incompleta**: Verifica si los campos `brandPrimary`, `textHighContrast` o `backgroundMain` tienen valor `null`. Si alguno de los campos brandPrimary, textHighContrast o backgroundMain tiene valor null, notifícalo al Director. El Director deberá entonces delegar al @design-subagent (Fase 0.5) la creación de una propuesta de paleta fundamentada en teoría de color para presentar al usuario. Nunca solicitar al usuario que proporcione valores de color en crudo. La definición de paleta es siempre responsabilidad del @design-subagent.
+3.  **Detección de Paleta Incompleta**: Verifica si los campos `brand-primary`, `text-primary` o `background` tienen valor `null`. Si alguno de los campos `brand-primary`, `text-primary` o `background` tiene valor `null`, notifícalo al Director. El Director deberá entonces delegar al @design-subagent (Fase 1) la creación de una propuesta de paleta fundamentada en teoría de color para presentar al usuario. Nunca solicitar al usuario que proporcione valores de color en crudo. La definición de paleta es siempre responsabilidad del @design-subagent.
 4.  **Sugerir Patrones**: Propón al Director los tokens o estructuras que hayan tenido éxito anteriormente.
 5.  **Inyectar Restricciones**: Si el usuario rechazó anteriormente un valor (ej: "No usar rojo #FF0000"), adviértelo proactivamente.
 
@@ -66,7 +66,7 @@ Al finalizar un pipeline de diseño:
     - **Paso Previos Obligatorio:** Ejecutar `view_file` sobre el archivo objetivo (`learning-log.md` o `user-preferences.json`).
     - **Resolución de Conflictos:** Si vas a guardar una nueva preferencia (ej: `borderRadius: 12`) y el archivo ya tiene una opuesta (ej: `borderRadius: 8`), notifica la sobrescritura y documenta el motivo del cambio en el `learning-log.md`. La última preferencia siempre gana.
     - **Higiene pre-escritura:** Ejecutar el **Protocolo de Autocompresión** si el archivo supera los límites de ruido.
-    - Guardar las lecciones extraídas en el `learning-log.md` (formato bitácora) y actualizar el `user-preferences.json` si la preferencia es clara. Nunca escribir si no se ha leído el estado actual previamente en la misma fase.
+    - Guardar las lecciones extraídas en el `learning-log.md` (formato bitácora) y actualizar el `user-preferences.json` si la preferencia es clara. Si `State.design.palette` contiene valores definidos para `brand-primary`, `text-primary` (o equivalente a `text-primary`) y `background`, estos deben guardarse en `user-preferences.json` bajo `colorPalette.brand-primary`, `colorPalette.text-primary` y `colorPalette.background` respectivamente para evitar que sean `null` en la siguiente sesión. Nunca escribir si no se ha leído el estado actual previamente en la misma fase.
 
 ---
 

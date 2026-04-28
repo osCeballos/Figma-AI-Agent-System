@@ -37,12 +37,33 @@ Ratio = (max(L1, L2) + 0.05) / (min(L1, L2) + 0.05)
 - **WCAG AA (texto grande, >=18pt o >=14pt bold):** Ratio >= 3.0
 - **WCAG AAA:** Ratio >= 7.0
 
+## Algoritmo de Corrección (Pseudo-código)
+
+Si el ratio es **< 4.5**, el agente debe ejecutar uno de estos dos flujos de remediación:
+
+### Flujo A: Con Paleta Disponible (Recomendado)
+Si el `@design-subagent` ha provisto una rampa de colores (`state.design.palette`):
+1. Filtrar los colores de la rampa que tengan un **Ratio >= 4.5** contra el fondo.
+2. De los candidatos, seleccionar aquel cuya **luminancia relativa sea la más cercana** al color original.
+3. Este método preserva la intención cromática del diseño original.
+
+### Flujo B: Sin Paleta (Ajuste por Luminancia)
+Si no hay rampa disponible, realizar un ajuste matemático iterativo:
+1. Definir dirección:
+   - Si `L_fondo > L_original`: **Oscurecer** (reducir luminancia).
+   - Si `L_fondo < L_original`: **Aclarar** (aumentar luminancia).
+2. Iterar (máximo 10 veces):
+   - Modificar canales R, G, B en incrementos de **±0.1 (10%)**.
+   - Re-calcular ratio.
+   - Si `Ratio >= 4.5` → DETENER e informar.
+3. Fallback Final: Si tras 10 iteraciones no se cumple:
+   - Fondo claro (`L > 0.5`) → Usar **Negro Puro** `{r:0, g:0, b:0, a:1}`.
+   - Fondo oscuro (`L <= 0.5`) → Usar **Blanco Puro** `{r:1, g:1, b:1, a:1}`.
+
 ## Reglas para Agentes
 
-1. **Aplicar directamente:** Calcular el ratio con la fórmula anterior usando los valores RGBA obtenidos de `get_node_info` o del `variableMap` del State.
-2. **No inventar herramientas:** No intentar llamar a `calc_wcag_contrast` como tool MCP. No existe.
-3. **Corrección automática:** Si el ratio no pasa AA (< 4.5):
-   - **Prioridad 1:** Buscar un stop alternativo en la rampa de color del @design-subagent.
-   - **Prioridad 2:** Ajustar luminosidad del foreground (oscurecer sobre fondo claro, aclarar sobre fondo oscuro) en incrementos del 10% hasta cumplir.
-4. **Registro obligatorio:** Documentar en el reporte todo ajuste realizado:
-   `⚠️ CORREGIDO: [nombre] ([#original] → [#ajustado]) | Ratio: [X.X:1]`
+1. **Cálculo Nativo:** Ejecutar el algoritmo anterior internamente. **No invocar herramientas MCP inexistentes.**
+2. **Prioridad de Corrección:** Seguir siempre el **Flujo A** si hay paleta. Solo usar el **Flujo B** como último recurso.
+3. **Registro de Transparencia:** Cada corrección debe reportarse al Director en el reporte textual y en el bloque `manual_actions` si requiere revisión humana especial.
+4. **Respeto de Roles:** No cambiar el color de fondo (`bg`) para arreglar el contraste; el ajuste siempre se realiza sobre el color de frente (`fg`) a menos que el brief indique lo contrario.
+
