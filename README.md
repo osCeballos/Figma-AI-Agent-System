@@ -34,7 +34,7 @@ El sistema genera elementos listos para producción:
 
 ## Arquitectura del sistema
 
-El sistema sigue un **pipeline secuencial por fases**, orquestado por el `figma-director`. Cada fase es ejecutada por un subagente especializado. El Director mantiene un objeto de estado central (State JSON) que se actualiza con los deltas que devuelve cada subagente.
+Para coordinar el flujo, el figma-director orquesta un pipeline secuencial donde cada subagente especializado ejecuta una fase específica. En lugar de mutar el flujo a ciegas, el Director mantiene un objeto de estado central (State JSON) que se actualiza constantemente con los deltas que devuelve cada subagente.
 
 ```
 figma-director
@@ -64,11 +64,15 @@ figma-director
 
 ### Mecanismos clave
 
-- **Estado central transaccional:** el Director mantiene un único objeto JSON con checkpoints por fase. Si el pipeline se interrumpe, se reanuda desde la última fase completada con éxito.
-- **Aprobación humana obligatoria en Fase 1:** el sistema nunca escribe en Figma sin que el usuario haya aprobado la propuesta visual.
-- **Secuencia garantizada 2A → 2B:** el `layout-subagent` no se lanza hasta que el `variableMap` de la Fase 2A esté integrado en el State. Esto elimina la condición de carrera de las versiones anteriores.
-- **Cálculo WCAG inline:** el ratio de contraste se calcula con la fórmula de luminancia relativa (L = 0.2126·R + 0.7152·G + 0.0722·B) directamente por el agente, sin depender de herramientas externas.
-- **Protección anti-duplicados:** el Director filtra el inventario de componentes existentes antes de delegar la Fase 3.
+El núcleo del sistema se apoya en un estado central transaccional. Aquí, el Director gestiona un único objeto JSON encargado de guardar checkpoints por cada fase; si el pipeline se cae, el proceso se reanuda de manera segura desde el último punto completado con éxito.
+
+Para evitar escrituras fantasma, la Fase 1 exige aprobación humana obligatoria, impidiendo que el sistema altere nada en Figma hasta que el usuario dé el visto bueno a la propuesta visual. Justo después, garantizamos el orden de ejecución bloqueando el lanzamiento del layout-subagent hasta que el variableMap de la Fase 2A se haya integrado por completo en el State. Con esta secuencia obligatoria eliminamos de raíz la condición de carrera que arrastrábamos en las versiones anteriores.
+
+El cumplimiento de accesibilidad también se ejecuta de forma nativa. El propio agente calcula el ratio de contraste ejecutando inline la fórmula de luminancia relativa:
+
+$$L = 0.2126 \cdot R + 0.7152 \cdot G + 0.0722 \cdot B$$
+
+Esto nos permite operar con total autonomía, sin depender de herramientas ni APIs externas. Por último, antes de delegar cualquier tarea a la Fase 3, el Director filtra exhaustivamente el inventario de componentes existentes para garantizar una protección anti-duplicados limpia.
 
 ---
 
