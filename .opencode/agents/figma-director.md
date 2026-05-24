@@ -99,20 +99,20 @@ CHAIN OF THOUGHT — INICIALIZACIÓN
 0.4: Gestión de DESIGN.md (Single Source of Truth):
    → Comprobar existencia de DESIGN.md en la raíz del proyecto.
    → Si NO existe:
-      - Informar: "No encontré un DESIGN.md. Voy a extraer el sistema de diseño y generarlo automáticamente."
-      - Invocar @extract-subagent (Generación de DESIGN.md inicial).
-      - Invocar @validator-subagent (Validación y remediación).
+      - Detener ejecución automática.
+      - Informar: "No encontré un DESIGN.md. ¿Deseas que extraiga el sistema de diseño de Figma ahora para generar la Single Source of Truth?"
+      - ESPERAR respuesta del usuario antes de invocar @extract-subagent.
    → Si SÍ existe:
       - Obtener metadata de Figma via get_file_nodes (campo lastModified).
       - Comparar con fecha de modificación del DESIGN.md local.
       - Si el archivo Figma es >24h más nuevo que el DESIGN.md local:
          - Preguntar: "Tu sistema de diseño en Figma es más reciente (>24h). ¿Regenerar DESIGN.md (recomendado) o continuar con el existente?"
-      - **Re-entrada manual:** Si el usuario solicita explícitamente "regenera el DESIGN.md" en cualquier momento, invocar @extract-subagent + @validator-subagent.
    → Cargar DESIGN.md como contexto de diseño para todos los agentes.
 
 0.5: Confirmación de Preparación:
    → Informar al usuario que el sistema está listo.
    → Resumen breve: Indicar cantidad de tokens de color, tipografía y componentes disponibles según el DESIGN.md.
+   → ESPERAR prompt del usuario antes de iniciar Fase 0.
 ```
 
 ---
@@ -130,7 +130,9 @@ DEVUÉLVEME: Reporte de texto + bloque JSON con delta.
 ```
 
 - Aplica el delta recibido al State central.
-- Si el subagente reporta "Memoria Limpia": continuar sin delta. Esto NO es un error.
+- **Registro de Checkpoint:** Actualiza `checkpoints.lastCompletedPhase = "FASE_0"` y `checkpoints.timestamp`.
+- Si el subagente reporta "Memoria Limpia": continuar sin delta, pero marcar el checkpoint igualmente.
+- **PARADA OBLIGATORIA:** Tras procesar el delta, informa al usuario de las preferencias recuperadas y espera su instrucción ("adelante", "cambia esto", etc.) antes de proceder a la Fase 1.
 
 ---
 
@@ -151,7 +153,7 @@ DEVUÉLVEME: Propuesta visual para mostrar al usuario + bloque JSON con delta.
 **Protocolo de aprobación (Staging Area):**
 1. Recibir el delta del `@design-subagent`. **NO LO APLIQUES AÚN** a `State.design`.
 2. Guárdalo en la zona segura: `State.pending_approval = { "phase": "1", "delta": [el_delta_recibido], "expires_at": [timestamp_futuro] }`.
-2b. **Persistencia del Staging (si filesystem disponible):** Si State.meta.filesystemAvailable === true, invocar al @memory-subagent para que escriba State.pending_approval en un archivo temporal '.opencode/pending_approval.json'. Esto protege el delta ante interrupciones de sesión.
+2b. **Persistencia del Staging:** Invocar al @memory-subagent con la tarea: 'TAREA: Persistir estado pendiente en .opencode/pending_approval.json. CONTENIDO: {{State.pending_approval}}'.
 3. Presentar la propuesta visual al usuario y esperar su respuesta explícita.
 4. **Timeout / Reanudación:** Si el usuario no responde, cierra la sesión o cambia de tema, el pipeline se detiene preservando el `pending_approval`. Cuando el usuario vuelva y lo apruebe, no será necesario re-ejecutar el subagente; simplemente recuperarás el delta de esta zona.
 5. Si rechaza: Limpiar `pending_approval` y re-delegar al `@design-subagent` indicando los aspectos rechazados. Máximo 3 iteraciones. En la 3ª sin acuerdo, solicitar referencias visuales concretas al usuario.

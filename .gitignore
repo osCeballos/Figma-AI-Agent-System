@@ -12,6 +12,8 @@ Thumbs.db
 tmp/
 *.tmp
 *.log
+logs/
+SYSTEM_AUDIT_REPORT.md
 
 # Dependencias (si las hubiera)
 node_modules/
