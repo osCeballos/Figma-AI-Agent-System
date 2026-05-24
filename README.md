@@ -21,14 +21,14 @@
 
 ## ¿Qué hace este sistema?
 
-Este proyecto es un **sistema multiagente de diseño en Figma** controlado por lenguaje natural. No es una herramienta de generación de imágenes: es un equipo de agentes de IA especializados que colaboran para producir diseños reales en Figma —con variables de color, AutoLayout, tokens de tipografía y auditoría de accesibilidad WCAG 2.1 AA— directamente en tu archivo de Figma Desktop.
+Este proyecto automatiza tu flujo de trabajo en Figma mediante un sistema multiagente controlado por lenguaje natural. En lugar de renderizar imágenes estáticas, este equipo de agentes genera maquetas reales directamente en tu archivo de Figma Desktop, configurando AutoLayout, variables de color, tokens tipográficos y ejecutando una auditoría de accesibilidad WCAG 2.1 AA en tiempo real.
 
-Puedes crear:
+El sistema genera elementos listos para producción:
 
-- Tarjetas, formularios, pantallas y layouts completos
-- Paletas de color con validación de contraste automática
-- Sistemas de tokens (color, espaciado, tipografía) como variables nativas de Figma
-- Componentes reutilizables con variantes de estado (Default, Hover, Disabled)
+- Estructuras complejas: Diseña tarjetas, formularios y layouts completos usando AutoLayout real, no vectores sueltos.
+- Paletas de color inteligentes: Crea esquemas de color con validación de contraste automatizada integrada.
+- Sistemas de tokens nativos: Traduce tus decisiones de diseño (color, espaciado, tipografía) en variables nativas de Figma.
+- Componentes interactivos: Desarrolla componentes reutilizables con variantes de estado configuradas (Default, Hover, Disabled).
 
 ---
 
