@@ -13,7 +13,7 @@
 
 <br>
 
-> Describe un diseño con palabras y un equipo de agentes de IA lo construye en Figma por ti —respetando grids, tipografía, accesibilidad y sistemas de componentes.
+> El sistema procesa instrucciones en lenguaje natural para que el ecosistema de agentes genere la interfaz directamente en Figma, validando de forma nativa el uso de grids, jerarquías tipográficas, variables del sistema de componentes y pautas de accesibilidad WCAG.
 
 </div>
 
