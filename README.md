@@ -203,41 +203,37 @@ La base de datos de comportamiento reside en la carpeta `.opencode/agents/memory
 
 ```mermaid
 graph TD
-    %% Fases Temporales
-    F0["🚀 Fase 0 (Inicio)"] --> F14["⚙️ Fases 1-4 (Ejecución)"]
-    F14 --> FFinal["🏁 Fase Final (Cierre)"]
-    
-    %% Archivos de Memoria
-    UserPref["👤 user-preferences.json"]
-    RulesJson["📜 rules.json"]
-    RejectedJson["🚫 rejected.json"]
-    SessionBuf["⏳ session-buffer.json"]
-    LockFile["🔒 .lock"]
-    LearningLog["📝 learning-log.md"]
-    
-    %% Conexiones Fase 0
-    F0 -.->|LECTURA| UserPref
-    F0 -.->|LECTURA| RulesJson
-    F0 -.->|LECTURA| RejectedJson
-    F0 -.->|LECTURA| SessionBuf
-    F0 ==>|CREACIÓN / VERIFICACIÓN| LockFile
-    
-    %% Conexiones Fases 1-4
-    F14 ==>|ESCRITURA <br>(Aprobación, Rechazo, Corrección, Checkpoint)| SessionBuf
-    
-    %% Conexiones Fase Final
-    FFinal ==>|ESCRITURA| UserPref
-    FFinal ==>|ESCRITURA| RulesJson
-    FFinal ==>|ESCRITURA| RejectedJson
-    FFinal ==>|ESCRITURA (Cierre)| SessionBuf
-    FFinal ==>|ESCRITURA| LearningLog
-    FFinal -->|ELIMINACIÓN| LockFile
-    
-    %% Estilos de enlaces (Lectura = Azul, Escritura = Naranja, Eliminación = Rojo)
-    linkStyle 0,1 stroke:#9ca3af,stroke-width:2px;
-    linkStyle 2,3,4,5,6 stroke:#3b82f6,stroke-width:2px;
-    linkStyle 7,8,9,10,11,12 stroke:#f97316,stroke-width:3px;
-    linkStyle 13 stroke:#ef4444,stroke-width:3px;
+    subgraph Inicio["Fase 0 (Inicio)"]
+        A[memory-subagent<br>session_start]
+    end
+
+    subgraph Ejecucion["Fases 1-4 (Ejecución)"]
+        B[Pipeline de diseño<br>design → tokens → layout → components → auditor]
+    end
+
+    subgraph Cierre["Fase Final (Cierre)"]
+        C[memory-subagent<br>session_end]
+    end
+
+    A -->|"LECTURA"| UP[user-preferences.json]
+    A -->|"LECTURA"| R[rules.json]
+    A -->|"LECTURA"| RJ[rejected.json]
+    A -->|"LECTURA"| SB[session-buffer.json]
+    A -->|"CREACIÓN / VERIFICACIÓN"| LOCK[".lock"]
+
+    B -->|"ESCRITURA <br>(Aprobación, Rechazo,<br>Corrección, Fase completada)"| SB
+
+    C -->|"ESCRITURA"| UP
+    C -->|"ESCRITURA"| R
+    C -->|"ESCRITURA"| RJ
+    C -->|"ESCRITURA"| LL[learning-log.md]
+    C -->|"ESCRITURA (cierre)"| SB
+    C -->|"ELIMINACIÓN"| LOCK
+
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style C fill:#FF9800,color:#fff
+    style LOCK fill:#f44336,color:#fff
 ```
 
 ### Exclusión Mutua (Lock File)
