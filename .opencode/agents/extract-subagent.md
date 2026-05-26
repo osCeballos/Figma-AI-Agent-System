@@ -25,17 +25,17 @@ Tu primera fuente de verdad.
 - Busca extraer las colecciones de variables de diseño (color, espaciado, tipografía, radios, etc.).
 - Si el archivo utiliza Variables de Figma, mapea estas a los tokens del `DESIGN.md`.
 
-### 2. `get_styles()` (Fallback de Tokens)
+### 2. `get_styles` (Fallback de Tokens)
 - Ejecuta esta herramienta para obtener estilos de texto, color y efectos (sombras, blur) publicados.
 - **Regla de Fallback:** Si `get_variables` falla o devuelve una lista vacía, los estilos obtenidos aquí se convierten en tu fuente de verdad principal para la paleta y tipografía.
 
-### 3. `get_file_components()`
-- Extrae la lista de componentes publicados y locales del archivo.
+### 3. `get_local_components`
+- Extrae la lista de componentes locales del archivo.
 - Analiza sus nombres, variantes (properties) y descripciones.
 - Mapea estos elementos a la sección de componentes del `DESIGN.md`.
 
-### 4. `get_file_nodes()` (Inferencia de Patrones)
-- Aplica esta herramienta sobre una muestra representativa de frames principales.
+### 4. `get_document_info` (Inferencia de Patrones)
+- Aplica esta herramienta sobre el documento Figma para obtener información general sobre las páginas y el árbol de nodos.
 - **Propósito:** Inferir patrones (espaciados comunes, colores no tokenizados, jerarquías) **solo si** los pasos 1 y 2 no proporcionaron suficiente información estructurada (si no hay variables).
 
 ---
@@ -74,7 +74,7 @@ El documento generado debe incluir obligatoriamente las siguientes secciones en 
 
 Debes prever y manejar proactivamente los siguientes escenarios:
 - **Sin variables ni estilos:** Si el archivo no tiene ni variables ni estilos publicados, **NO generes un DESIGN.md vacío**. Informa al usuario con un mensaje claro e instrucciones para que defina estilos en Figma.
-- **`get_variables` vacío:** Si falla o devuelve vacío, usa `get_styles()` como fallback y documéntalo explícitamente en la sección `Overview` del `DESIGN.md`.
+- **`get_variables` vacío:** Si falla o devuelve vacío, usa `get_styles` como fallback y documéntalo explícitamente en la sección `Overview` del `DESIGN.md`.
 - **Nomenclatura no estándar:** Si los nombres de variables en Figma no siguen la convención, normalízalos a kebab-case (ej: `"Color/Primary/500"` → `"primary"`).
 - **Colores duplicados:** Si hay colores duplicados con distintos nombres, conserva el alias más semántico y añade un comentario explicando el alias omitido.
 

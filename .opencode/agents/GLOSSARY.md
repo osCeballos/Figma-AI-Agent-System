@@ -55,6 +55,15 @@ Este documento define la terminología estándar utilizada por el Director y los
 
 ---
 
+## Sistema de Memoria y Archivos Core
+
+- **user-preferences.json** — Preferencias de comportamiento histórico del usuario. NO guarda tokens de diseño técnico (esos están en DESIGN.md). Guarda desviaciones, overrides y preferencias subjetivas del usuario respecto al sistema técnico de Figma: tipografías preferidas, niveles de contraste exigidos, patrones a evitar, layouts exitosos.
+- **DESIGN.md** — Foto técnica del sistema de diseño extraído de Figma. Fuente de verdad de tokens (colores, tipografía, radios, espaciado, componentes). Generado por extract-subagent, validado por validator-subagent, leído por todos. Sigue la especificación oficial de Google Labs (github.com/google-labs-code/design.md).
+- **rules.json** — Reglas de comportamiento extraídas automáticamente de patrones repetidos en correcciones del usuario. Leído en `session_start` para inyectar restricciones activas al pipeline. Escrito en `session_end` cuando se detectan patrones nuevos. Reglas con `confidence < 0.4` se desactivan automáticamente.
+- **rejected.json** — Registro de propuestas explícitamente rechazadas por el usuario (paletas, patrones, tipografías). Leído en `session_start` y pasado al Director como restricciones activas. Escrito en `session_end`. Los rechazos expiran tras N sesiones salvo que el usuario los marque como permanentes.
+
+---
+
 ## Conceptos de Diseño UX/UI
 
 ### 7. Armonía Cromática

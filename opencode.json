@@ -7,7 +7,8 @@
       "args": ["-y", "claude-talk-to-figma-mcp"],
       "enabled": true,
       "environment": {
-        "FIGMA_PAT": "pega-aquí-tu-token"
+        "FIGMA_PAT": "${env:FIGMA_PAT}",
+        "__comment_FIGMA_PAT": "El token de Figma nunca debe ser expuesto en texto plano en los archivos del proyecto. Se lee desde la variable de entorno FIGMA_PAT del sistema."
       }
     },
     "filesystem": {
