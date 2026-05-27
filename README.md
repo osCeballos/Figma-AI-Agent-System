@@ -43,87 +43,8 @@ El sistema utiliza una arquitectura radial. Los agentes no se comunican de forma
 
 ### Diagrama de Integración del Sistema
 
-```mermaid
-graph TD
-    %% Nodos principales y flujo
-    Usuario["👤 Usuario"] --> Director["🤖 figma-director <br>(Orquestador Primario)"]
-    
-    Director <--> MemoryAgent["🧠 memory-subagent"]
-    
-    %% Conexión de Director a Subagentes de Diseño
-    Director --> DesignAgent["🎨 design-subagent"]
-    Director --> TokensAgent["🔤 tokens-subagent"]
-    Director --> LayoutAgent["📐 layout-subagent"]
-    Director --> ComponentsAgent["🧩 components-subagent"]
-    Director --> AuditorAgent["🔍 auditor-subagent"]
-
-    %% Relación secuencial de la fila de diseño
-    DesignAgent --> TokensAgent --> LayoutAgent --> ComponentsAgent --> AuditorAgent
-    
-    %% Conexión de Director a Subagentes Auxiliares de Cierre
-    Director --> ExtractAgent["📤 extract-subagent"]
-    Director --> ValidatorAgent["✅ validator-subagent"]
-    
-    %% Conexiones a Servidores MCP
-    DesignAgent & TokensAgent & LayoutAgent & ComponentsAgent & AuditorAgent & ExtractAgent --> MCPApi["🔌 MCP FIGMA <br>(claude-talk-to-figma-mcp)"]
-    ValidatorAgent & ExtractAgent & MemoryAgent --> MCPFs["🔌 MCP FILESYSTEM <br>(@modelcontextprotocol/server-filesystem)"]
-    
-    %% Destinos Finales
-    MCPApi --> FigmaDesktop["💻 Figma Desktop <br>(Lienzo Visual)"]
-    MCPFs --> SistemaDisco["💾 Sistema Disco <br>(Proyecto Local)"]
-
-    %% Subgraph de Memoria en Disco
-    subgraph MemoriaDisco["📂 Memoria en Disco (.opencode/agents/memory/)"]
-        LockFile[".lock"]
-        UserPref["user-preferences.json"]
-        RulesJson["rules.json"]
-        RejectedJson["rejected.json"]
-        SessionBuf["session-buffer.json"]
-        LearningLog["learning-log.md"]
-    end
-    MemoryAgent <--> MemoriaDisco
-    
-    %% Agrupaciones por Subgraphs
-    subgraph SubAgDesign["🎨 Subagentes de Diseño"]
-        DesignAgent
-        TokensAgent
-        LayoutAgent
-        ComponentsAgent
-        AuditorAgent
-    end
-    
-    subgraph SubAgCierre["⚡ Subagentes de Cierre"]
-        ExtractAgent
-        ValidatorAgent
-    end
-    
-    subgraph MCPServers["🔌 Servidores MCP"]
-        MCPApi
-        MCPFs
-    end
-    
-    subgraph TargetFigma["🌐 Figma Desktop"]
-        FigmaDesktop
-    end
-    
-    subgraph TargetFS["📂 Sistema de Archivos Local"]
-        SistemaDisco
-        MemoriaDisco
-    end
-    
-    %% Estilos de diseño
-    classDef directorStyle fill:#1e3a8a,stroke:#3b82f6,stroke-width:2px,color:#fff;
-    classDef subagentStyle fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#fff;
-    classDef mcpStyle fill:#7c2d12,stroke:#f97316,stroke-width:2px,color:#fff;
-    classDef figmaStyle fill:#581c87,stroke:#a855f7,stroke-width:2px,color:#fff;
-    classDef diskStyle fill:#1f2937,stroke:#9ca3af,stroke-width:2px,color:#fff;
-    
-    class Director directorStyle;
-    class MemoryAgent,DesignAgent,TokensAgent,LayoutAgent,ComponentsAgent,AuditorAgent,ExtractAgent,ValidatorAgent subagentStyle;
-    class MCPApi,MCPFs mcpStyle;
-    class FigmaDesktop figmaStyle;
-    class SistemaDisco,LockFile,UserPref,RulesJson,RejectedJson,SessionBuf,LearningLog,MemoriaDisco diskStyle;
-```
+<!-- [Mensaje: Aquí va la imagen del Diagrama de Integración del Sistema (PNG)] -->
+![Diagrama de Integración del Sistema](docs/images/diagrama-integracion-sistema.png)
 
 **Canal de comunicación:** `figma-director` → MCP Server (`claude-talk-to-figma-mcp`) → WebSocket (puerto 3055) → Plugin Figma Desktop
 
@@ -143,32 +64,8 @@ graph TD
 
 ### Flujo secuencial de fases del Pipeline
 
-```mermaid
-graph LR
-    F0["🧠 Fase 0: Carga de Memoria <br>(memory-subagent)"] --> F1["🎨 Fase 1: Identidad Visual <br>(design-subagent)"]
-    F1 --> Decid{"❓ ¿Usuario aprueba?"}
-    
-    Decid -- "Sí" --> F2A["🔤 Fase 2A: Tokens Dry-Run <br>(tokens-subagent)"]
-    Decid -- "No (Máx 3 veces)" --> Replan["❌ Re-planificación / Ajuste"]
-    Replan --> F1
-    
-    F2A --> F2B["📐 Fase 2B: Contenedores & Grid <br>(layout-subagent)"]
-    F2B --> F3["🧩 Fase 3: Componentes & Variantes <br>(components-subagent)"]
-    F3 --> F4["🔍 Fase 4: Auditoría & WCAG <br>(auditor-subagent)"]
-    
-    F4 --> Ext["📤 Cierre: Extracción DESIGN.md <br>(extract-subagent)"]
-    Ext --> Val["✅ Cierre: Linter en Memoria <br>(validator-subagent)"]
-    Val --> MemCierre["🧠 Cierre: Consolidación Memoria <br>(memory-subagent)"]
-    
-    %% Definiciones de estilos
-    classDef completedStyle fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#fff;
-    classDef decisionStyle fill:#78350f,stroke:#f59e0b,stroke-width:2px,color:#fff;
-    classDef rejectStyle fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#fff;
-    
-    class F0,F1,F2A,F2B,F3,F4,Ext,Val,MemCierre completedStyle;
-    class Decid decisionStyle;
-    class Replan rejectStyle;
-```
+<!-- [Mensaje: Aquí va la imagen del Flujo Secuencial de Fases del Pipeline (PNG)] -->
+![Flujo Secuencial de Fases del Pipeline](docs/images/flujo-secuencial-fases.png)
 
 ### Mecanismos Clave del Pipeline
 
@@ -201,40 +98,8 @@ La base de datos de comportamiento reside en la carpeta `.opencode/agents/memory
 
 #### Ciclo de Lectura/Escritura de la Memoria en el Ciclo de Vida
 
-```mermaid
-graph TD
-    subgraph Inicio["Fase 0 (Inicio)"]
-        A[memory-subagent<br>session_start]
-    end
-
-    subgraph Ejecucion["Fases 1-4 (Ejecución)"]
-        B[Pipeline de diseño<br>design → tokens → layout → components → auditor]
-    end
-
-    subgraph Cierre["Fase Final (Cierre)"]
-        C[memory-subagent<br>session_end]
-    end
-
-    A -->|"LECTURA"| UP[user-preferences.json]
-    A -->|"LECTURA"| R[rules.json]
-    A -->|"LECTURA"| RJ[rejected.json]
-    A -->|"LECTURA"| SB[session-buffer.json]
-    A -->|"CREACIÓN / VERIFICACIÓN"| LOCK[".lock"]
-
-    B -->|"ESCRITURA <br>(Aprobación, Rechazo,<br>Corrección, Fase completada)"| SB
-
-    C -->|"ESCRITURA"| UP
-    C -->|"ESCRITURA"| R
-    C -->|"ESCRITURA"| RJ
-    C -->|"ESCRITURA"| LL[learning-log.md]
-    C -->|"ESCRITURA (cierre)"| SB
-    C -->|"ELIMINACIÓN"| LOCK
-
-    style A fill:#4CAF50,color:#fff
-    style B fill:#2196F3,color:#fff
-    style C fill:#FF9800,color:#fff
-    style LOCK fill:#f44336,color:#fff
-```
+<!-- [Mensaje: Aquí va la imagen del Ciclo de Lectura/Escritura de la Memoria en el Ciclo de Vida (PNG)] -->
+![Ciclo de Lectura/Escritura de la Memoria en el Ciclo de Vida](docs/images/ciclo-lectura-escritura-memoria.png)
 
 ### Exclusión Mutua (Lock File)
 
