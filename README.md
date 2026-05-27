@@ -43,8 +43,7 @@ El sistema utiliza una arquitectura radial. Los agentes no se comunican de forma
 
 ### Diagrama de Integración del Sistema
 
-<!-- [Mensaje: Aquí va la imagen del Diagrama de Integración del Sistema (PNG)] -->
-![Diagrama de Integración del Sistema](docs/images/diagrama-integracion-sistema.png)
+<img width="1172" height="916" alt="Group 31" src="https://github.com/user-attachments/assets/2155fa1d-fd74-4197-b1a7-1fd28fd8cba5" />
 
 **Canal de comunicación:** `figma-director` → MCP Server (`claude-talk-to-figma-mcp`) → WebSocket (puerto 3055) → Plugin Figma Desktop
 
@@ -64,8 +63,7 @@ El sistema utiliza una arquitectura radial. Los agentes no se comunican de forma
 
 ### Flujo secuencial de fases del Pipeline
 
-<!-- [Mensaje: Aquí va la imagen del Flujo Secuencial de Fases del Pipeline (PNG)] -->
-![Flujo Secuencial de Fases del Pipeline](docs/images/flujo-secuencial-fases.png)
+<img width="1492" height="788" alt="Group 30" src="https://github.com/user-attachments/assets/d18847d5-ae8b-4db2-ab96-5b6f5f746218" />
 
 ### Mecanismos Clave del Pipeline
 
@@ -95,11 +93,6 @@ La base de datos de comportamiento reside en la carpeta `.opencode/agents/memory
 | `session-buffer.json` | ⏳ | JSON | Archivo transaccional que registra en tiempo real las aprobaciones, rechazos, correcciones manuales y checkpoints de la sesión activa para garantizar la tolerancia a interrupciones. | Se lee en la **Fase 0**; se actualiza activamente durante las **Fases 1-4** y el **Cierre**. |
 | `learning-log.md` | 📝 | Markdown | Diario de ingeniería cronológico legible por humanos que detalla el aprendizaje del sistema. Implementa autocompresión cuando supera las 1500 palabras, condensando las entradas antiguas a 5 balas generalizadas y reteniendo solo las últimas 5 detalladas. | Se escribe únicamente en la fase de **Cierre (Fase Final)**. |
 | `.lock` | 🔒 | Archivo físico | Archivo de exclusión mutua que previene ejecuciones paralelas concurrentes inyectando el PID del proceso y timestamp. | Se crea/verifica en la **Fase 0** y se elimina físicamente en el **Cierre** o ante fallas críticas. |
-
-#### Ciclo de Lectura/Escritura de la Memoria en el Ciclo de Vida
-
-<!-- [Mensaje: Aquí va la imagen del Ciclo de Lectura/Escritura de la Memoria en el Ciclo de Vida (PNG)] -->
-![Ciclo de Lectura/Escritura de la Memoria en el Ciclo de Vida](docs/images/ciclo-lectura-escritura-memoria.png)
 
 ### Exclusión Mutua (Lock File)
 
